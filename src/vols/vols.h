@@ -19,4 +19,6 @@ int  supprimer_vol(int id);
 int  chercher_vol(int id, Vol *resultat);
 void calculer_duree(const char *h_dep, const char *h_arr, char *duree);
 
+int  charger_vols(Vol tab[], int max, const char *filtre);
+
 #endif

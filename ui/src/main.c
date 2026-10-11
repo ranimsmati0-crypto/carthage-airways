@@ -11,6 +11,7 @@
 
 #include "interface.h"
 #include "support.h"
+#include "vols_ui.h"
 
 int
 main (int argc, char *argv[])
@@ -29,6 +30,7 @@ main (int argc, char *argv[])
    */
   fenetre_admin_vols = create_fenetre_admin_vols ();
   gtk_widget_show (fenetre_admin_vols);
+  afficher_vols (GTK_TREE_VIEW (lookup_widget (fenetre_admin_vols, "treeview_vols")), NULL);
 
   gtk_main ();
   return 0;

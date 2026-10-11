@@ -7,12 +7,21 @@
 #include "callbacks.h"
 #include "interface.h"
 #include "support.h"
+#include "vols_ui.h"
+#include "vols_ui.h"
 
 
 void
 on_btn_rechercher_clicked              (GtkButton       *button,
                                         gpointer         user_data)
 {
+  GtkWidget *fenetre = gtk_widget_get_toplevel(GTK_WIDGET(button));
+  GtkWidget *entree  = lookup_widget(fenetre, "entry_recherche");
+  GtkWidget *tableau = lookup_widget(fenetre, "treeview_vols");
+
+  afficher_vols(GTK_TREE_VIEW(tableau),
+                gtk_entry_get_text(GTK_ENTRY(entree)));
+
 
 }
 

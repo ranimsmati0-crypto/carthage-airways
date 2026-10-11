@@ -130,3 +130,25 @@ void calculer_duree(const char *h_dep, const char *h_arr, char *duree)
         minutes += 24 * 60;
     sprintf(duree, "%02dh%02d", minutes / 60, minutes % 60);
 }
+
+int charger_vols(Vol tab[], int max, const char *filtre)
+{
+    FILE *f = fopen(FICHIER, "r");
+    Vol v;
+    int n = 0;
+
+    if (f == NULL)
+        return 0;
+    while (n < max &&
+           fscanf(f, LECTURE, &v.id, v.depart, v.destination, v.date,
+                  v.h_depart, v.h_arrivee, v.avion, v.statut) == 8)
+    {
+        if (filtre == NULL || filtre[0] == '\0'
+            || strstr(v.depart, filtre)
+            || strstr(v.destination, filtre)
+            || strstr(v.date, filtre))
+            tab[n++] = v;
+    }
+    fclose(f);
+    return n;
+}

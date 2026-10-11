@@ -1,0 +1,3 @@
+101;Tunis;Paris;15/11/2026;08:30;11:00;TS-ABC;Prevu
+102;Tunis;Rome;16/11/2026;09:15;10:45;TS-DEF;Prevu
+103;Paris;Tunis;17/11/2026;14:00;16:30;TS-ABC;Prevu
