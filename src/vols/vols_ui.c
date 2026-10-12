@@ -22,13 +22,12 @@ static void creer_colonnes(GtkTreeView *tv)
     }
 }
 
-void afficher_vols(GtkTreeView *tv, const char *filtre)
+static void remplir_tableau(GtkTreeView *tv, Vol tab[], int n)
 {
-    Vol tab[MAX_VOLS];
     GtkListStore *store;
     GtkTreeIter iter;
     char id[12], duree[10];
-    int i, n;
+    int i;
 
     if (gtk_tree_view_get_column(tv, 0) == NULL)
         creer_colonnes(tv);
@@ -38,7 +37,6 @@ void afficher_vols(GtkTreeView *tv, const char *filtre)
         G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING,
         G_TYPE_STRING);
 
-    n = charger_vols(tab, MAX_VOLS, filtre);
     for (i = 0; i < n; i++) {
         sprintf(id, "%d", tab[i].id);
         calculer_duree(tab[i].h_depart, tab[i].h_arrivee, duree);
@@ -57,4 +55,23 @@ void afficher_vols(GtkTreeView *tv, const char *filtre)
     }
     gtk_tree_view_set_model(tv, GTK_TREE_MODEL(store));
     g_object_unref(store);
+}
+
+void afficher_vols(GtkTreeView *tv, const char *filtre)
+{
+    Vol tab[MAX_VOLS];
+    int n = charger_vols(tab, MAX_VOLS, filtre);
+
+    remplir_tableau(tv, tab, n);
+}
+
+void afficher_vols_criteres(GtkTreeView *tv, const char *depart,
+                            const char *destination, const char *date,
+                            const char *heure)
+{
+    Vol tab[MAX_VOLS];
+    int n = charger_vols_criteres(tab, MAX_VOLS, depart, destination,
+                                  date, heure);
+
+    remplir_tableau(tv, tab, n);
 }

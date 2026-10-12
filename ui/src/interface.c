@@ -32,8 +32,8 @@ create_fenetre_admin_vols (void)
   GtkWidget *fenetre_admin_vols;
   GtkWidget *vbox1;
   GtkWidget *hbox3;
-  GtkWidget *label_rechercher;
-  GtkWidget *entry_recherche;
+  GtkWidget *Depart__;
+  GtkWidget *entry_depart;
   GtkWidget *btn_rechercher;
   GtkWidget *scrolledwindow1;
   GtkWidget *treeview_vols;
@@ -55,14 +55,14 @@ create_fenetre_admin_vols (void)
   gtk_widget_show (hbox3);
   gtk_box_pack_start (GTK_BOX (vbox1), hbox3, TRUE, TRUE, 0);
 
-  label_rechercher = gtk_label_new ("Rechercher :");
-  gtk_widget_show (label_rechercher);
-  gtk_box_pack_start (GTK_BOX (hbox3), label_rechercher, FALSE, FALSE, 0);
+  Depart__ = gtk_label_new ("Rechercher :");
+  gtk_widget_show (Depart__);
+  gtk_box_pack_start (GTK_BOX (hbox3), Depart__, FALSE, FALSE, 0);
 
-  entry_recherche = gtk_entry_new ();
-  gtk_widget_show (entry_recherche);
-  gtk_box_pack_start (GTK_BOX (hbox3), entry_recherche, TRUE, TRUE, 0);
-  gtk_entry_set_invisible_char (GTK_ENTRY (entry_recherche), 8226);
+  entry_depart = gtk_entry_new ();
+  gtk_widget_show (entry_depart);
+  gtk_box_pack_start (GTK_BOX (hbox3), entry_depart, TRUE, TRUE, 0);
+  gtk_entry_set_invisible_char (GTK_ENTRY (entry_depart), 8226);
 
   btn_rechercher = gtk_button_new_with_mnemonic ("Rechercher\n");
   gtk_widget_show (btn_rechercher);
@@ -117,8 +117,8 @@ create_fenetre_admin_vols (void)
   GLADE_HOOKUP_OBJECT_NO_REF (fenetre_admin_vols, fenetre_admin_vols, "fenetre_admin_vols");
   GLADE_HOOKUP_OBJECT (fenetre_admin_vols, vbox1, "vbox1");
   GLADE_HOOKUP_OBJECT (fenetre_admin_vols, hbox3, "hbox3");
-  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, label_rechercher, "label_rechercher");
-  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, entry_recherche, "entry_recherche");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, Depart__, "Depart__");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, entry_depart, "entry_depart");
   GLADE_HOOKUP_OBJECT (fenetre_admin_vols, btn_rechercher, "btn_rechercher");
   GLADE_HOOKUP_OBJECT (fenetre_admin_vols, scrolledwindow1, "scrolledwindow1");
   GLADE_HOOKUP_OBJECT (fenetre_admin_vols, treeview_vols, "treeview_vols");

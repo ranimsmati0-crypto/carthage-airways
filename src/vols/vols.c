@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 #include "vols.h"
 
 #define FICHIER "data/vols.txt"
@@ -147,6 +148,46 @@ int charger_vols(Vol tab[], int max, const char *filtre)
             || strstr(v.depart, filtre)
             || strstr(v.destination, filtre)
             || strstr(v.date, filtre))
+            tab[n++] = v;
+    }
+    fclose(f);
+    return n;
+}
+
+static int contient(const char *texte, const char *critere)
+{
+    char t[64], c[64];
+    int i;
+
+    if (critere == NULL || critere[0] == '\0')
+        return 1;
+    for (i = 0; i < 63 && texte[i]; i++)
+        t[i] = tolower((unsigned char)texte[i]);
+    t[i] = '\0';
+    for (i = 0; i < 63 && critere[i]; i++)
+        c[i] = tolower((unsigned char)critere[i]);
+    c[i] = '\0';
+    return strstr(t, c) != NULL;
+}
+
+int charger_vols_criteres(Vol tab[], int max, const char *depart,
+                          const char *destination, const char *date,
+                          const char *heure)
+{
+    FILE *f = fopen(FICHIER, "r");
+    Vol v;
+    int n = 0;
+
+    if (f == NULL)
+        return 0;
+    while (n < max &&
+           fscanf(f, LECTURE, &v.id, v.depart, v.destination, v.date,
+                  v.h_depart, v.h_arrivee, v.avion, v.statut) == 8)
+    {
+        if (contient(v.depart, depart)
+            && contient(v.destination, destination)
+            && contient(v.date, date)
+            && contient(v.h_depart, heure))
             tab[n++] = v;
     }
     fclose(f);

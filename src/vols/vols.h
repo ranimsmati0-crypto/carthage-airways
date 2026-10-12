@@ -21,4 +21,8 @@ void calculer_duree(const char *h_dep, const char *h_arr, char *duree);
 
 int  charger_vols(Vol tab[], int max, const char *filtre);
 
+int  charger_vols_criteres(Vol tab[], int max, const char *depart,
+                          const char *destination, const char *date,
+                          const char *heure);
+
 #endif
