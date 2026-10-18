@@ -5,13 +5,13 @@
 
 #define MAX_VOLS 200
 
-enum { COL_ID, COL_DEPART, COL_DEST, COL_DATE, COL_HDEP,
+enum { COL_ID, COL_DEPART, COL_DEST, COL_DATE, COL_HDEP, COL_DARR,
        COL_HARR, COL_DUREE, COL_AVION, COL_STATUT, NB_COL };
 
 static void creer_colonnes(GtkTreeView *tv)
 {
-    const char *titres[NB_COL] = {"ID", "Depart", "Destination", "Date",
-        "Heure depart", "Heure arrivee", "Duree", "Avion", "Statut"};
+    const char *titres[NB_COL] = {"ID", "Depart", "Destination", "Date depart",
+        "Heure depart", "Date arrivee", "Heure arrivee", "Duree", "Avion", "Statut"};
     int i;
 
     for (i = 0; i < NB_COL; i++) {
@@ -35,7 +35,7 @@ static void remplir_tableau(GtkTreeView *tv, Vol tab[], int n)
     store = gtk_list_store_new(NB_COL,
         G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING,
         G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING,
-        G_TYPE_STRING);
+        G_TYPE_STRING, G_TYPE_STRING);
 
     for (i = 0; i < n; i++) {
         sprintf(id, "%d", tab[i].id);
@@ -47,6 +47,7 @@ static void remplir_tableau(GtkTreeView *tv, Vol tab[], int n)
             COL_DEST, tab[i].destination,
             COL_DATE, tab[i].date,
             COL_HDEP, tab[i].h_depart,
+            COL_DARR, tab[i].date_arrivee,
             COL_HARR, tab[i].h_arrivee,
             COL_DUREE, duree,
             COL_AVION, tab[i].avion,
@@ -67,11 +68,11 @@ void afficher_vols(GtkTreeView *tv, const char *filtre)
 
 void afficher_vols_criteres(GtkTreeView *tv, const char *depart,
                             const char *destination, const char *date,
-                            const char *heure)
+                            const char *date_arrivee, const char *heure)
 {
     Vol tab[MAX_VOLS];
     int n = charger_vols_criteres(tab, MAX_VOLS, depart, destination,
-                                  date, heure);
+                                  date, date_arrivee, heure);
 
     remplir_tableau(tv, tab, n);
 }

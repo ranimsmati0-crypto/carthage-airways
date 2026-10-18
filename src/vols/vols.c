@@ -3,10 +3,18 @@
 #include <ctype.h>
 #include "vols.h"
 
-#define FICHIER "data/vols.txt"
-#define TEMP    "data/vols.tmp"
-#define LECTURE "%d;%29[^;];%29[^;];%10[^;];%5[^;];%5[^;];%19[^;];%14[^\n]\n"
-#define ECRITURE "%d;%s;%s;%s;%s;%s;%s;%s\n"
+#define FICHIER  "data/vols.txt"
+#define TEMP     "data/vols.tmp"
+#define LECTURE  "%d;%29[^;];%29[^;];%10[^;];%5[^;];%10[^;];%5[^;];%19[^;];%14[^\n]\n"
+#define ECRITURE "%d;%s;%s;%s;%s;%s;%s;%s;%s\n"
+#define NB_CHAMPS 9
+
+#define LIRE_ARGS(v) &(v).id, (v).depart, (v).destination, (v).date, \
+                     (v).h_depart, (v).date_arrivee, (v).h_arrivee, \
+                     (v).avion, (v).statut
+#define ECRIRE_ARGS(v) (v).id, (v).depart, (v).destination, (v).date, \
+                       (v).h_depart, (v).date_arrivee, (v).h_arrivee, \
+                       (v).avion, (v).statut
 
 int vol_existe(int id)
 {
@@ -16,9 +24,7 @@ int vol_existe(int id)
 
     if (f == NULL)
         return 0;
-    while (fscanf(f, LECTURE, &v.id, v.depart, v.destination, v.date,
-                  v.h_depart, v.h_arrivee, v.avion, v.statut) == 8)
-    {
+    while (fscanf(f, LECTURE, LIRE_ARGS(v)) == NB_CHAMPS) {
         if (v.id == id)
             trouve = 1;
     }
@@ -35,8 +41,7 @@ int ajouter_vol(Vol v)
     f = fopen(FICHIER, "a");
     if (f == NULL)
         return 0;
-    fprintf(f, ECRITURE, v.id, v.depart, v.destination, v.date,
-            v.h_depart, v.h_arrivee, v.avion, v.statut);
+    fprintf(f, ECRITURE, ECRIRE_ARGS(v));
     fclose(f);
     return 1;
 }
@@ -54,15 +59,12 @@ int modifier_vol(int id, Vol nouveau)
         return 0;
     }
     nouveau.id = id;
-    while (fscanf(f, LECTURE, &v.id, v.depart, v.destination, v.date,
-                  v.h_depart, v.h_arrivee, v.avion, v.statut) == 8)
-    {
+    while (fscanf(f, LECTURE, LIRE_ARGS(v)) == NB_CHAMPS) {
         if (v.id == id) {
             v = nouveau;
             trouve = 1;
         }
-        fprintf(t, ECRITURE, v.id, v.depart, v.destination, v.date,
-                v.h_depart, v.h_arrivee, v.avion, v.statut);
+        fprintf(t, ECRITURE, ECRIRE_ARGS(v));
     }
     fclose(f);
     fclose(t);
@@ -83,14 +85,11 @@ int supprimer_vol(int id)
         if (t) fclose(t);
         return 0;
     }
-    while (fscanf(f, LECTURE, &v.id, v.depart, v.destination, v.date,
-                  v.h_depart, v.h_arrivee, v.avion, v.statut) == 8)
-    {
+    while (fscanf(f, LECTURE, LIRE_ARGS(v)) == NB_CHAMPS) {
         if (v.id == id)
             trouve = 1;
         else
-            fprintf(t, ECRITURE, v.id, v.depart, v.destination, v.date,
-                    v.h_depart, v.h_arrivee, v.avion, v.statut);
+            fprintf(t, ECRITURE, ECRIRE_ARGS(v));
     }
     fclose(f);
     fclose(t);
@@ -107,10 +106,7 @@ int chercher_vol(int id, Vol *resultat)
 
     if (f == NULL)
         return 0;
-    while (!trouve &&
-           fscanf(f, LECTURE, &v.id, v.depart, v.destination, v.date,
-                  v.h_depart, v.h_arrivee, v.avion, v.statut) == 8)
-    {
+    while (!trouve && fscanf(f, LECTURE, LIRE_ARGS(v)) == NB_CHAMPS) {
         if (v.id == id) {
             *resultat = v;
             trouve = 1;
@@ -140,14 +136,12 @@ int charger_vols(Vol tab[], int max, const char *filtre)
 
     if (f == NULL)
         return 0;
-    while (n < max &&
-           fscanf(f, LECTURE, &v.id, v.depart, v.destination, v.date,
-                  v.h_depart, v.h_arrivee, v.avion, v.statut) == 8)
-    {
+    while (n < max && fscanf(f, LECTURE, LIRE_ARGS(v)) == NB_CHAMPS) {
         if (filtre == NULL || filtre[0] == '\0'
             || strstr(v.depart, filtre)
             || strstr(v.destination, filtre)
-            || strstr(v.date, filtre))
+            || strstr(v.date, filtre)
+            || strstr(v.date_arrivee, filtre))
             tab[n++] = v;
     }
     fclose(f);
@@ -172,7 +166,7 @@ static int contient(const char *texte, const char *critere)
 
 int charger_vols_criteres(Vol tab[], int max, const char *depart,
                           const char *destination, const char *date,
-                          const char *heure)
+                          const char *date_arrivee, const char *heure)
 {
     FILE *f = fopen(FICHIER, "r");
     Vol v;
@@ -180,13 +174,11 @@ int charger_vols_criteres(Vol tab[], int max, const char *depart,
 
     if (f == NULL)
         return 0;
-    while (n < max &&
-           fscanf(f, LECTURE, &v.id, v.depart, v.destination, v.date,
-                  v.h_depart, v.h_arrivee, v.avion, v.statut) == 8)
-    {
+    while (n < max && fscanf(f, LECTURE, LIRE_ARGS(v)) == NB_CHAMPS) {
         if (contient(v.depart, depart)
             && contient(v.destination, destination)
             && contient(v.date, date)
+            && contient(v.date_arrivee, date_arrivee)
             && contient(v.h_depart, heure))
             tab[n++] = v;
     }

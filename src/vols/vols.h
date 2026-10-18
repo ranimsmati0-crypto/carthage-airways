@@ -5,8 +5,9 @@ typedef struct {
     int  id;
     char depart[30];
     char destination[30];
-    char date[11];
+    char date[11];          /* date de départ */
     char h_depart[6];
+    char date_arrivee[11];
     char h_arrivee[6];
     char avion[20];
     char statut[15];
@@ -22,7 +23,7 @@ void calculer_duree(const char *h_dep, const char *h_arr, char *duree);
 int  charger_vols(Vol tab[], int max, const char *filtre);
 
 int  charger_vols_criteres(Vol tab[], int max, const char *depart,
-                          const char *destination, const char *date,
-                          const char *heure);
+                           const char *destination, const char *date,
+                           const char *date_arrivee, const char *heure);
 
 #endif

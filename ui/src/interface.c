@@ -31,9 +31,27 @@ create_fenetre_admin_vols (void)
 {
   GtkWidget *fenetre_admin_vols;
   GtkWidget *vbox1;
-  GtkWidget *hbox3;
-  GtkWidget *Depart__;
+  GtkWidget *table1;
+  GtkWidget *Label_depart_;
   GtkWidget *entry_depart;
+  GtkWidget *Label_destination__;
+  GtkWidget *entry_destination;
+  GtkWidget *check_date_depart;
+  GtkWidget *box_date_depart;
+  GtkObject *spin_jour_depart_adj;
+  GtkWidget *spin_jour_depart;
+  GtkObject *spin_mois_depart_adj;
+  GtkWidget *spin_mois_depart;
+  GtkObject *spin_annee_depart_adj;
+  GtkWidget *spin_annee_depart;
+  GtkWidget *check_date_arrivee;
+  GtkWidget *box_date_arrivee;
+  GtkObject *spin_jour_arrivee_adj;
+  GtkWidget *spin_jour_arrivee;
+  GtkObject *spin_mois_arrivee_adj;
+  GtkWidget *spin_mois_arrivee;
+  GtkObject *spin_annee_arrivee_adj;
+  GtkWidget *spin_annee_arrivee;
   GtkWidget *btn_rechercher;
   GtkWidget *scrolledwindow1;
   GtkWidget *treeview_vols;
@@ -51,22 +69,111 @@ create_fenetre_admin_vols (void)
   gtk_widget_show (vbox1);
   gtk_container_add (GTK_CONTAINER (fenetre_admin_vols), vbox1);
 
-  hbox3 = gtk_hbox_new (FALSE, 0);
-  gtk_widget_show (hbox3);
-  gtk_box_pack_start (GTK_BOX (vbox1), hbox3, TRUE, TRUE, 0);
+  table1 = gtk_table_new (4, 4, FALSE);
+  gtk_widget_show (table1);
+  gtk_box_pack_start (GTK_BOX (vbox1), table1, TRUE, TRUE, 0);
 
-  Depart__ = gtk_label_new ("Rechercher :");
-  gtk_widget_show (Depart__);
-  gtk_box_pack_start (GTK_BOX (hbox3), Depart__, FALSE, FALSE, 0);
+  Label_depart_ = gtk_label_new ("Depart :");
+  gtk_widget_show (Label_depart_);
+  gtk_table_attach (GTK_TABLE (table1), Label_depart_, 0, 1, 0, 1,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_misc_set_alignment (GTK_MISC (Label_depart_), 0, 0.5);
 
   entry_depart = gtk_entry_new ();
   gtk_widget_show (entry_depart);
-  gtk_box_pack_start (GTK_BOX (hbox3), entry_depart, TRUE, TRUE, 0);
+  gtk_table_attach (GTK_TABLE (table1), entry_depart, 1, 2, 0, 1,
+                    (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
   gtk_entry_set_invisible_char (GTK_ENTRY (entry_depart), 8226);
 
-  btn_rechercher = gtk_button_new_with_mnemonic ("Rechercher\n");
+  Label_destination__ = gtk_label_new ("Destination :");
+  gtk_widget_show (Label_destination__);
+  gtk_table_attach (GTK_TABLE (table1), Label_destination__, 2, 3, 0, 1,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_misc_set_alignment (GTK_MISC (Label_destination__), 0, 0.5);
+
+  entry_destination = gtk_entry_new ();
+  gtk_widget_show (entry_destination);
+  gtk_table_attach (GTK_TABLE (table1), entry_destination, 3, 4, 0, 1,
+                    (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_entry_set_invisible_char (GTK_ENTRY (entry_destination), 8226);
+
+  check_date_depart = gtk_check_button_new_with_mnemonic ("Date de depart : ");
+  gtk_widget_show (check_date_depart);
+  gtk_table_attach (GTK_TABLE (table1), check_date_depart, 0, 1, 1, 2,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  box_date_depart = gtk_hbox_new (FALSE, 4);
+  gtk_widget_show (box_date_depart);
+  gtk_table_attach (GTK_TABLE (table1), box_date_depart, 1, 2, 1, 2,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (GTK_FILL), 0, 0);
+  gtk_widget_set_sensitive (box_date_depart, FALSE);
+
+  spin_jour_depart_adj = gtk_adjustment_new (31, 1, 31, 1, 5, 0);
+  spin_jour_depart = gtk_spin_button_new (GTK_ADJUSTMENT (spin_jour_depart_adj), 1, 0);
+  gtk_widget_show (spin_jour_depart);
+  gtk_box_pack_start (GTK_BOX (box_date_depart), spin_jour_depart, TRUE, TRUE, 0);
+  gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (spin_jour_depart), TRUE);
+  gtk_spin_button_set_wrap (GTK_SPIN_BUTTON (spin_jour_depart), TRUE);
+
+  spin_mois_depart_adj = gtk_adjustment_new (1, 1, 12, 1, 3, 0);
+  spin_mois_depart = gtk_spin_button_new (GTK_ADJUSTMENT (spin_mois_depart_adj), 1, 0);
+  gtk_widget_show (spin_mois_depart);
+  gtk_box_pack_start (GTK_BOX (box_date_depart), spin_mois_depart, TRUE, TRUE, 0);
+  gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (spin_mois_depart), TRUE);
+  gtk_spin_button_set_wrap (GTK_SPIN_BUTTON (spin_mois_depart), TRUE);
+
+  spin_annee_depart_adj = gtk_adjustment_new (2026, 2026, 2035, 1, 5, 0);
+  spin_annee_depart = gtk_spin_button_new (GTK_ADJUSTMENT (spin_annee_depart_adj), 1, 0);
+  gtk_widget_show (spin_annee_depart);
+  gtk_box_pack_start (GTK_BOX (box_date_depart), spin_annee_depart, TRUE, TRUE, 0);
+  gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (spin_annee_depart), TRUE);
+  gtk_spin_button_set_wrap (GTK_SPIN_BUTTON (spin_annee_depart), TRUE);
+
+  check_date_arrivee = gtk_check_button_new_with_mnemonic ("Date arrivee :");
+  gtk_widget_show (check_date_arrivee);
+  gtk_table_attach (GTK_TABLE (table1), check_date_arrivee, 0, 1, 2, 3,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  box_date_arrivee = gtk_hbox_new (FALSE, 4);
+  gtk_widget_show (box_date_arrivee);
+  gtk_table_attach (GTK_TABLE (table1), box_date_arrivee, 1, 2, 2, 3,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (GTK_FILL), 0, 0);
+  gtk_widget_set_sensitive (box_date_arrivee, FALSE);
+
+  spin_jour_arrivee_adj = gtk_adjustment_new (15, 1, 31, 1, 5, 0);
+  spin_jour_arrivee = gtk_spin_button_new (GTK_ADJUSTMENT (spin_jour_arrivee_adj), 1, 0);
+  gtk_widget_show (spin_jour_arrivee);
+  gtk_box_pack_start (GTK_BOX (box_date_arrivee), spin_jour_arrivee, TRUE, TRUE, 0);
+  gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (spin_jour_arrivee), TRUE);
+  gtk_spin_button_set_snap_to_ticks (GTK_SPIN_BUTTON (spin_jour_arrivee), TRUE);
+
+  spin_mois_arrivee_adj = gtk_adjustment_new (9, 1, 12, 1, 3, 0);
+  spin_mois_arrivee = gtk_spin_button_new (GTK_ADJUSTMENT (spin_mois_arrivee_adj), 1, 0);
+  gtk_widget_show (spin_mois_arrivee);
+  gtk_box_pack_start (GTK_BOX (box_date_arrivee), spin_mois_arrivee, TRUE, TRUE, 0);
+  gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (spin_mois_arrivee), TRUE);
+  gtk_spin_button_set_snap_to_ticks (GTK_SPIN_BUTTON (spin_mois_arrivee), TRUE);
+
+  spin_annee_arrivee_adj = gtk_adjustment_new (2026, 2026, 2035, 1, 5, 0);
+  spin_annee_arrivee = gtk_spin_button_new (GTK_ADJUSTMENT (spin_annee_arrivee_adj), 1, 0);
+  gtk_widget_show (spin_annee_arrivee);
+  gtk_box_pack_start (GTK_BOX (box_date_arrivee), spin_annee_arrivee, TRUE, TRUE, 0);
+  gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (spin_annee_arrivee), TRUE);
+  gtk_spin_button_set_snap_to_ticks (GTK_SPIN_BUTTON (spin_annee_arrivee), TRUE);
+
+  btn_rechercher = gtk_button_new_with_mnemonic ("Rechercher");
   gtk_widget_show (btn_rechercher);
-  gtk_box_pack_start (GTK_BOX (hbox3), btn_rechercher, FALSE, FALSE, 0);
+  gtk_table_attach (GTK_TABLE (table1), btn_rechercher, 0, 1, 3, 4,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
 
   scrolledwindow1 = gtk_scrolled_window_new (NULL, NULL);
   gtk_widget_show (scrolledwindow1);
@@ -93,10 +200,16 @@ create_fenetre_admin_vols (void)
   gtk_widget_show (btn_supprimer);
   gtk_box_pack_start (GTK_BOX (hbox4), btn_supprimer, FALSE, FALSE, 0);
 
-  btn_affecter = gtk_button_new_with_mnemonic ("Affecter un avion \n");
+  btn_affecter = gtk_button_new_with_mnemonic ("Affecter un avion\n\n\n");
   gtk_widget_show (btn_affecter);
   gtk_box_pack_start (GTK_BOX (hbox4), btn_affecter, FALSE, FALSE, 0);
 
+  g_signal_connect ((gpointer) check_date_depart, "toggled",
+                    G_CALLBACK (on_check_date_depart_toggled),
+                    NULL);
+  g_signal_connect ((gpointer) check_date_arrivee, "toggled",
+                    G_CALLBACK (on_check_date_arrivee_toggled),
+                    NULL);
   g_signal_connect ((gpointer) btn_rechercher, "clicked",
                     G_CALLBACK (on_btn_rechercher_clicked),
                     NULL);
@@ -116,9 +229,21 @@ create_fenetre_admin_vols (void)
   /* Store pointers to all widgets, for use by lookup_widget(). */
   GLADE_HOOKUP_OBJECT_NO_REF (fenetre_admin_vols, fenetre_admin_vols, "fenetre_admin_vols");
   GLADE_HOOKUP_OBJECT (fenetre_admin_vols, vbox1, "vbox1");
-  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, hbox3, "hbox3");
-  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, Depart__, "Depart__");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, table1, "table1");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, Label_depart_, "Label_depart_");
   GLADE_HOOKUP_OBJECT (fenetre_admin_vols, entry_depart, "entry_depart");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, Label_destination__, "Label_destination__");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, entry_destination, "entry_destination");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, check_date_depart, "check_date_depart");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, box_date_depart, "box_date_depart");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, spin_jour_depart, "spin_jour_depart");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, spin_mois_depart, "spin_mois_depart");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, spin_annee_depart, "spin_annee_depart");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, check_date_arrivee, "check_date_arrivee");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, box_date_arrivee, "box_date_arrivee");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, spin_jour_arrivee, "spin_jour_arrivee");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, spin_mois_arrivee, "spin_mois_arrivee");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, spin_annee_arrivee, "spin_annee_arrivee");
   GLADE_HOOKUP_OBJECT (fenetre_admin_vols, btn_rechercher, "btn_rechercher");
   GLADE_HOOKUP_OBJECT (fenetre_admin_vols, scrolledwindow1, "scrolledwindow1");
   GLADE_HOOKUP_OBJECT (fenetre_admin_vols, treeview_vols, "treeview_vols");
