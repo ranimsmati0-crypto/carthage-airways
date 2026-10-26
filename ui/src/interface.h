@@ -3,3 +3,4 @@
  */
 
 GtkWidget* create_fenetre_admin_vols (void);
+GtkWidget* create_fenetre_ajoute_vol (void);

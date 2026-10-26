@@ -13,3 +13,19 @@ void on_btn_affecter_clicked (GtkButton *button, gpointer user_data);
 void on_check_date_depart_toggled (GtkToggleButton *togglebutton, gpointer user_data);
 
 void on_check_date_arrivee_toggled (GtkToggleButton *togglebutton, gpointer user_data);
+
+void
+on_btn_affecter_clicked                (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_check_escale_aj_toggled             (GtkToggleButton *togglebutton,
+                                        gpointer         user_data);
+
+void
+on_btn_enregistrer_aj_clicked          (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_btn_annuler_aj_clicked              (GtkButton       *button,
+                                        gpointer         user_data);
