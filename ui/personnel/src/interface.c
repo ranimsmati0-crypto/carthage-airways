@@ -27,33 +27,6 @@
   g_object_set_data (G_OBJECT (component), name, widget)
 
 GtkWidget*
-create_window_test (void)
-{
-  GtkWidget *window_test;
-  GtkWidget *btn_test;
-
-  window_test = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-  gtk_window_set_title (GTK_WINDOW (window_test), _("Test"));
-
-  btn_test = gtk_button_new_with_mnemonic (_("Clique."));
-  gtk_widget_show (btn_test);
-  gtk_container_add (GTK_CONTAINER (window_test), btn_test);
-
-  g_signal_connect ((gpointer) window_test, "destroy",
-                    G_CALLBACK (on_window_test_destroy),
-                    NULL);
-  g_signal_connect ((gpointer) btn_test, "clicked",
-                    G_CALLBACK (on_btn_test_clicked),
-                    NULL);
-
-  /* Store pointers to all widgets, for use by lookup_widget(). */
-  GLADE_HOOKUP_OBJECT_NO_REF (window_test, window_test, "window_test");
-  GLADE_HOOKUP_OBJECT (window_test, btn_test, "btn_test");
-
-  return window_test;
-}
-
-GtkWidget*
 create_window_admin_personnel (void)
 {
   GtkWidget *window_admin_personnel;

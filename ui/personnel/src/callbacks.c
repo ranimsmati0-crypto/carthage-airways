@@ -27,7 +27,7 @@ void
 on_window_admin_personnel_destroy      (GtkObject       *object,
                                         gpointer         user_data)
 {
-
+  gtk_main_quit();
 }
 
 

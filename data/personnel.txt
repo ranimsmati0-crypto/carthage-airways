@@ -1,0 +1,5 @@
+1;Ben Salah;Karim;12;05;1985;71234567;karim.bensalah@carthageairways.tn;kbensalah;Capitaine de bord;Tunis-Carthage;1;3200
+2;Trabelsi;Sonia;03;11;1990;98123456;sonia.trabelsi@carthageairways.tn;strabelsi;Officier pilote;Monastir;1;1450
+3;Gharbi;Yassine;21;07;1993;55123456;yassine.gharbi@carthageairways.tn;ygharbi;Personnel de cabine;Djerba;0;870
+4;Jlassi;Amira;15;02;1995;22123456;amira.jlassi@carthageairways.tn;ajlassi;Personnel de cabine;Tunis-Carthage;1;1210
+5;Mansouri;Walid;30;09;1980;50123456;walid.mansouri@carthageairways.tn;wmansouri;Capitaine de bord;Sfax;1;4100
