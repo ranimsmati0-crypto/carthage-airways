@@ -53,3 +53,298 @@ create_window_test (void)
   return window_test;
 }
 
+GtkWidget*
+create_window_admin_personnel (void)
+{
+  GtkWidget *window_admin_personnel;
+  GtkWidget *hbox_principal;
+  GtkWidget *eventbox_menu;
+  GtkWidget *vbox_menu;
+  GtkWidget *admin_menu_logo;
+  GtkWidget *admin_menu_personnel;
+  GtkWidget *admin_menu_licences;
+  GtkWidget *admin_menu_stats;
+  GtkWidget *admin_menu_espace;
+  GtkWidget *admin_menu_deconnexion;
+  GtkWidget *vbox_droite;
+  GtkWidget *hbox_entete;
+  GtkWidget *admin_entete_espace;
+  GtkWidget *admin_label_user;
+  GtkWidget *admin_titre;
+  GtkWidget *eventbox_recherche;
+  GtkWidget *table_recherche;
+  GtkWidget *admin_lbl_nom;
+  GtkWidget *admin_lbl_fonction;
+  GtkWidget *admin_lbl_base;
+  GtkWidget *admin_lbl_dispo;
+  GtkWidget *admin_entry_recherche;
+  GtkWidget *admin_combo_fonction;
+  GtkWidget *admin_combo_base;
+  GtkWidget *admin_combo_dispo;
+  GtkWidget *admin_btn_rechercher;
+  GtkWidget *admin_btn_reinitialiser;
+  GtkWidget *admin_scroll_personnel;
+  GtkWidget *admin_treeview_personnel;
+  GtkWidget *hbox_actions;
+  GtkWidget *admin_btn_ajouter;
+  GtkWidget *admin_btn_modifier;
+  GtkWidget *admin_btn_supprimer;
+  GtkWidget *admin_actions_espace;
+
+  window_admin_personnel = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+  gtk_window_set_title (GTK_WINDOW (window_admin_personnel), _("Carthage Airways - Gestion du personnel navigant"));
+  gtk_window_set_position (GTK_WINDOW (window_admin_personnel), GTK_WIN_POS_CENTER);
+  gtk_window_set_default_size (GTK_WINDOW (window_admin_personnel), 1100, 680);
+
+  hbox_principal = gtk_hbox_new (FALSE, 0);
+  gtk_widget_show (hbox_principal);
+  gtk_container_add (GTK_CONTAINER (window_admin_personnel), hbox_principal);
+
+  eventbox_menu = gtk_event_box_new ();
+  gtk_widget_show (eventbox_menu);
+  gtk_box_pack_start (GTK_BOX (hbox_principal), eventbox_menu, FALSE, TRUE, 0);
+
+  vbox_menu = gtk_vbox_new (FALSE, 0);
+  gtk_widget_show (vbox_menu);
+  gtk_container_add (GTK_CONTAINER (eventbox_menu), vbox_menu);
+  gtk_widget_set_size_request (vbox_menu, 210, -1);
+
+  admin_menu_logo = gtk_label_new (_("\342\234\210 Carthage Airways"));
+  gtk_widget_show (admin_menu_logo);
+  gtk_box_pack_start (GTK_BOX (vbox_menu), admin_menu_logo, FALSE, FALSE, 0);
+
+  admin_menu_personnel = gtk_button_new_with_mnemonic (_("Personnel"));
+  gtk_widget_show (admin_menu_personnel);
+  gtk_box_pack_start (GTK_BOX (vbox_menu), admin_menu_personnel, FALSE, FALSE, 0);
+  gtk_button_set_relief (GTK_BUTTON (admin_menu_personnel), GTK_RELIEF_NONE);
+
+  admin_menu_licences = gtk_button_new_with_mnemonic (_("Licences"));
+  gtk_widget_show (admin_menu_licences);
+  gtk_box_pack_start (GTK_BOX (vbox_menu), admin_menu_licences, FALSE, FALSE, 0);
+  gtk_container_set_border_width (GTK_CONTAINER (admin_menu_licences), 12);
+  gtk_button_set_relief (GTK_BUTTON (admin_menu_licences), GTK_RELIEF_NONE);
+
+  admin_menu_stats = gtk_button_new_with_mnemonic (_("Statistiques"));
+  gtk_widget_show (admin_menu_stats);
+  gtk_box_pack_start (GTK_BOX (vbox_menu), admin_menu_stats, FALSE, FALSE, 0);
+  gtk_button_set_relief (GTK_BUTTON (admin_menu_stats), GTK_RELIEF_NONE);
+
+  admin_menu_espace = gtk_label_new ("");
+  gtk_widget_show (admin_menu_espace);
+  gtk_box_pack_start (GTK_BOX (vbox_menu), admin_menu_espace, TRUE, FALSE, 0);
+  gtk_misc_set_alignment (GTK_MISC (admin_menu_espace), 0.5, 0.42);
+
+  admin_menu_deconnexion = gtk_button_new_with_mnemonic (_("D\303\251connexion"));
+  gtk_widget_show (admin_menu_deconnexion);
+  gtk_box_pack_start (GTK_BOX (vbox_menu), admin_menu_deconnexion, FALSE, FALSE, 0);
+  gtk_button_set_relief (GTK_BUTTON (admin_menu_deconnexion), GTK_RELIEF_NONE);
+
+  vbox_droite = gtk_vbox_new (FALSE, 12);
+  gtk_widget_show (vbox_droite);
+  gtk_box_pack_start (GTK_BOX (hbox_principal), vbox_droite, TRUE, TRUE, 0);
+  gtk_container_set_border_width (GTK_CONTAINER (vbox_droite), 15);
+
+  hbox_entete = gtk_hbox_new (FALSE, 0);
+  gtk_widget_show (hbox_entete);
+  gtk_box_pack_start (GTK_BOX (vbox_droite), hbox_entete, TRUE, TRUE, 0);
+
+  admin_entete_espace = gtk_label_new ("");
+  gtk_widget_show (admin_entete_espace);
+  gtk_box_pack_start (GTK_BOX (hbox_entete), admin_entete_espace, TRUE, FALSE, 0);
+
+  admin_label_user = gtk_label_new (_("Administrateur"));
+  gtk_widget_show (admin_label_user);
+  gtk_box_pack_start (GTK_BOX (hbox_entete), admin_label_user, FALSE, FALSE, 0);
+
+  admin_titre = gtk_label_new (_("Gestion du personnel navigant"));
+  gtk_widget_show (admin_titre);
+  gtk_box_pack_start (GTK_BOX (vbox_droite), admin_titre, FALSE, FALSE, 0);
+
+  eventbox_recherche = gtk_event_box_new ();
+  gtk_widget_show (eventbox_recherche);
+  gtk_box_pack_start (GTK_BOX (vbox_droite), eventbox_recherche, TRUE, TRUE, 0);
+
+  table_recherche = gtk_table_new (2, 6, FALSE);
+  gtk_widget_show (table_recherche);
+  gtk_container_add (GTK_CONTAINER (eventbox_recherche), table_recherche);
+  gtk_container_set_border_width (GTK_CONTAINER (table_recherche), 12);
+  gtk_table_set_row_spacings (GTK_TABLE (table_recherche), 4);
+  gtk_table_set_col_spacings (GTK_TABLE (table_recherche), 10);
+
+  admin_lbl_nom = gtk_label_new (_("Nom / Pr\303\251nom / ID"));
+  gtk_widget_show (admin_lbl_nom);
+  gtk_table_attach (GTK_TABLE (table_recherche), admin_lbl_nom, 0, 1, 0, 1,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_misc_set_alignment (GTK_MISC (admin_lbl_nom), 0, 0.5);
+
+  admin_lbl_fonction = gtk_label_new (_("Fonction"));
+  gtk_widget_show (admin_lbl_fonction);
+  gtk_table_attach (GTK_TABLE (table_recherche), admin_lbl_fonction, 1, 2, 0, 1,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_misc_set_alignment (GTK_MISC (admin_lbl_fonction), 0, 0.5);
+
+  admin_lbl_base = gtk_label_new (_("Base d'attache"));
+  gtk_widget_show (admin_lbl_base);
+  gtk_table_attach (GTK_TABLE (table_recherche), admin_lbl_base, 2, 3, 0, 1,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_misc_set_alignment (GTK_MISC (admin_lbl_base), 0, 0.5);
+
+  admin_lbl_dispo = gtk_label_new (_("Disponibilit\303\251"));
+  gtk_widget_show (admin_lbl_dispo);
+  gtk_table_attach (GTK_TABLE (table_recherche), admin_lbl_dispo, 3, 4, 0, 1,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_misc_set_alignment (GTK_MISC (admin_lbl_dispo), 0, 0.5);
+
+  admin_entry_recherche = gtk_entry_new ();
+  gtk_widget_show (admin_entry_recherche);
+  gtk_table_attach (GTK_TABLE (table_recherche), admin_entry_recherche, 0, 1, 1, 2,
+                    (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_entry_set_invisible_char (GTK_ENTRY (admin_entry_recherche), 8226);
+
+  admin_combo_fonction = gtk_combo_box_new_text ();
+  gtk_widget_show (admin_combo_fonction);
+  gtk_table_attach (GTK_TABLE (table_recherche), admin_combo_fonction, 1, 2, 1, 2,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (GTK_FILL), 0, 0);
+  gtk_combo_box_append_text (GTK_COMBO_BOX (admin_combo_fonction), _("Toutes"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (admin_combo_fonction), _("Capitaine de bord"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (admin_combo_fonction), _("Officier pilote"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (admin_combo_fonction), _("Personnel de cabine"));
+
+  admin_combo_base = gtk_combo_box_new_text ();
+  gtk_widget_show (admin_combo_base);
+  gtk_table_attach (GTK_TABLE (table_recherche), admin_combo_base, 2, 3, 1, 2,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (GTK_FILL), 0, 0);
+  gtk_combo_box_append_text (GTK_COMBO_BOX (admin_combo_base), _("Toutes"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (admin_combo_base), _("Tunis-Carthage"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (admin_combo_base), _("Monastir"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (admin_combo_base), _("Djerba"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (admin_combo_base), _("Sfax"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (admin_combo_base), _("Gab\303\250s"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (admin_combo_base), _("Gafsa"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (admin_combo_base), _("Tabarka"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (admin_combo_base), _("Tozeur"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (admin_combo_base), _("Enfidha"));
+
+  admin_combo_dispo = gtk_combo_box_new_text ();
+  gtk_widget_show (admin_combo_dispo);
+  gtk_table_attach (GTK_TABLE (table_recherche), admin_combo_dispo, 3, 4, 1, 2,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (GTK_FILL), 0, 0);
+  gtk_combo_box_append_text (GTK_COMBO_BOX (admin_combo_dispo), _("Tous"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (admin_combo_dispo), _("Disponible"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (admin_combo_dispo), _("Indisponible"));
+
+  admin_btn_rechercher = gtk_button_new_with_mnemonic (_("Rechercher"));
+  gtk_widget_show (admin_btn_rechercher);
+  gtk_table_attach (GTK_TABLE (table_recherche), admin_btn_rechercher, 4, 5, 1, 2,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  admin_btn_reinitialiser = gtk_button_new_with_mnemonic (_("R\303\251initialiser"));
+  gtk_widget_show (admin_btn_reinitialiser);
+  gtk_table_attach (GTK_TABLE (table_recherche), admin_btn_reinitialiser, 5, 6, 1, 2,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
+  admin_scroll_personnel = gtk_scrolled_window_new (NULL, NULL);
+  gtk_widget_show (admin_scroll_personnel);
+  gtk_box_pack_start (GTK_BOX (vbox_droite), admin_scroll_personnel, TRUE, TRUE, 0);
+
+  admin_treeview_personnel = gtk_tree_view_new ();
+  gtk_widget_show (admin_treeview_personnel);
+  gtk_container_add (GTK_CONTAINER (admin_scroll_personnel), admin_treeview_personnel);
+
+  hbox_actions = gtk_hbox_new (FALSE, 10);
+  gtk_widget_show (hbox_actions);
+  gtk_box_pack_start (GTK_BOX (vbox_droite), hbox_actions, FALSE, TRUE, 0);
+
+  admin_btn_ajouter = gtk_button_new_with_mnemonic (_("Ajouter"));
+  gtk_widget_show (admin_btn_ajouter);
+  gtk_box_pack_start (GTK_BOX (hbox_actions), admin_btn_ajouter, FALSE, FALSE, 0);
+
+  admin_btn_modifier = gtk_button_new_with_mnemonic (_("Modifier"));
+  gtk_widget_show (admin_btn_modifier);
+  gtk_box_pack_start (GTK_BOX (hbox_actions), admin_btn_modifier, FALSE, FALSE, 0);
+
+  admin_btn_supprimer = gtk_button_new_with_mnemonic (_("Supprimer"));
+  gtk_widget_show (admin_btn_supprimer);
+  gtk_box_pack_start (GTK_BOX (hbox_actions), admin_btn_supprimer, FALSE, FALSE, 0);
+
+  admin_actions_espace = gtk_label_new ("");
+  gtk_widget_show (admin_actions_espace);
+  gtk_box_pack_start (GTK_BOX (hbox_actions), admin_actions_espace, TRUE, FALSE, 0);
+
+  g_signal_connect ((gpointer) window_admin_personnel, "destroy",
+                    G_CALLBACK (on_window_admin_personnel_destroy),
+                    NULL);
+  g_signal_connect ((gpointer) admin_menu_licences, "clicked",
+                    G_CALLBACK (on_admin_menu_licences_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) admin_menu_stats, "clicked",
+                    G_CALLBACK (on_admin_menu_stats_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) admin_menu_deconnexion, "clicked",
+                    G_CALLBACK (on_admin_menu_deconnexion_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) admin_btn_rechercher, "clicked",
+                    G_CALLBACK (on_admin_btn_rechercher_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) admin_btn_reinitialiser, "clicked",
+                    G_CALLBACK (on_admin_btn_reinitialiser_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) admin_btn_ajouter, "clicked",
+                    G_CALLBACK (on_admin_btn_ajouter_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) admin_btn_modifier, "clicked",
+                    G_CALLBACK (on_admin_btn_modifier_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) admin_btn_supprimer, "clicked",
+                    G_CALLBACK (on_admin_btn_supprimer_clicked),
+                    NULL);
+
+  /* Store pointers to all widgets, for use by lookup_widget(). */
+  GLADE_HOOKUP_OBJECT_NO_REF (window_admin_personnel, window_admin_personnel, "window_admin_personnel");
+  GLADE_HOOKUP_OBJECT (window_admin_personnel, hbox_principal, "hbox_principal");
+  GLADE_HOOKUP_OBJECT (window_admin_personnel, eventbox_menu, "eventbox_menu");
+  GLADE_HOOKUP_OBJECT (window_admin_personnel, vbox_menu, "vbox_menu");
+  GLADE_HOOKUP_OBJECT (window_admin_personnel, admin_menu_logo, "admin_menu_logo");
+  GLADE_HOOKUP_OBJECT (window_admin_personnel, admin_menu_personnel, "admin_menu_personnel");
+  GLADE_HOOKUP_OBJECT (window_admin_personnel, admin_menu_licences, "admin_menu_licences");
+  GLADE_HOOKUP_OBJECT (window_admin_personnel, admin_menu_stats, "admin_menu_stats");
+  GLADE_HOOKUP_OBJECT (window_admin_personnel, admin_menu_espace, "admin_menu_espace");
+  GLADE_HOOKUP_OBJECT (window_admin_personnel, admin_menu_deconnexion, "admin_menu_deconnexion");
+  GLADE_HOOKUP_OBJECT (window_admin_personnel, vbox_droite, "vbox_droite");
+  GLADE_HOOKUP_OBJECT (window_admin_personnel, hbox_entete, "hbox_entete");
+  GLADE_HOOKUP_OBJECT (window_admin_personnel, admin_entete_espace, "admin_entete_espace");
+  GLADE_HOOKUP_OBJECT (window_admin_personnel, admin_label_user, "admin_label_user");
+  GLADE_HOOKUP_OBJECT (window_admin_personnel, admin_titre, "admin_titre");
+  GLADE_HOOKUP_OBJECT (window_admin_personnel, eventbox_recherche, "eventbox_recherche");
+  GLADE_HOOKUP_OBJECT (window_admin_personnel, table_recherche, "table_recherche");
+  GLADE_HOOKUP_OBJECT (window_admin_personnel, admin_lbl_nom, "admin_lbl_nom");
+  GLADE_HOOKUP_OBJECT (window_admin_personnel, admin_lbl_fonction, "admin_lbl_fonction");
+  GLADE_HOOKUP_OBJECT (window_admin_personnel, admin_lbl_base, "admin_lbl_base");
+  GLADE_HOOKUP_OBJECT (window_admin_personnel, admin_lbl_dispo, "admin_lbl_dispo");
+  GLADE_HOOKUP_OBJECT (window_admin_personnel, admin_entry_recherche, "admin_entry_recherche");
+  GLADE_HOOKUP_OBJECT (window_admin_personnel, admin_combo_fonction, "admin_combo_fonction");
+  GLADE_HOOKUP_OBJECT (window_admin_personnel, admin_combo_base, "admin_combo_base");
+  GLADE_HOOKUP_OBJECT (window_admin_personnel, admin_combo_dispo, "admin_combo_dispo");
+  GLADE_HOOKUP_OBJECT (window_admin_personnel, admin_btn_rechercher, "admin_btn_rechercher");
+  GLADE_HOOKUP_OBJECT (window_admin_personnel, admin_btn_reinitialiser, "admin_btn_reinitialiser");
+  GLADE_HOOKUP_OBJECT (window_admin_personnel, admin_scroll_personnel, "admin_scroll_personnel");
+  GLADE_HOOKUP_OBJECT (window_admin_personnel, admin_treeview_personnel, "admin_treeview_personnel");
+  GLADE_HOOKUP_OBJECT (window_admin_personnel, hbox_actions, "hbox_actions");
+  GLADE_HOOKUP_OBJECT (window_admin_personnel, admin_btn_ajouter, "admin_btn_ajouter");
+  GLADE_HOOKUP_OBJECT (window_admin_personnel, admin_btn_modifier, "admin_btn_modifier");
+  GLADE_HOOKUP_OBJECT (window_admin_personnel, admin_btn_supprimer, "admin_btn_supprimer");
+  GLADE_HOOKUP_OBJECT (window_admin_personnel, admin_actions_espace, "admin_actions_espace");
+
+  return window_admin_personnel;
+}
+

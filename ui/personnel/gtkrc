@@ -1,0 +1,67 @@
+gtk-theme-name = "Raleigh"
+gtk-font-name = "Sans 10"
+
+style "defaut"
+{
+  bg[NORMAL]      = "#1a2030"
+  bg[PRELIGHT]    = "#26304a"
+  bg[ACTIVE]      = "#26304a"
+  bg[INSENSITIVE] = "#1a2030"
+  fg[NORMAL]      = "#e5e7eb"
+  fg[PRELIGHT]    = "#ffffff"
+  fg[ACTIVE]      = "#ffffff"
+  base[NORMAL]    = "#202839"
+  text[NORMAL]    = "#e5e7eb"
+  base[SELECTED]  = "#1d6fe8"
+  text[SELECTED]  = "#ffffff"
+}
+
+style "menu"
+{
+  bg[NORMAL]      = "#141926"
+  bg[PRELIGHT]    = "#26304a"
+  bg[ACTIVE]      = "#1d6fe8"
+}
+
+style "carte"
+{
+  bg[NORMAL]      = "#202839"
+}
+
+style "logo"
+{
+  font_name = "Sans Bold 13"
+  fg[NORMAL] = "#ffffff"
+}
+
+style "titre"
+{
+  font_name = "Sans Bold 20"
+  fg[NORMAL] = "#ffffff"
+}
+
+style "btn_bleu"
+{
+  bg[NORMAL]   = "#1d6fe8"
+  bg[PRELIGHT] = "#3b82f6"
+  bg[ACTIVE]   = "#1558c0"
+  fg[NORMAL]   = "#ffffff"
+  fg[PRELIGHT] = "#ffffff"
+}
+
+style "btn_rouge"
+{
+  bg[NORMAL]   = "#3a1d24"
+  bg[PRELIGHT] = "#5a2630"
+  fg[NORMAL]   = "#f87171"
+  fg[PRELIGHT] = "#fca5a5"
+}
+
+class  "GtkWidget"              style "defaut"
+widget "*eventbox_menu*"        style "menu"
+widget "*eventbox_recherche*"   style "carte"
+widget "*admin_menu_logo"       style "logo"
+widget "*admin_titre"           style "titre"
+widget "*admin_btn_rechercher"  style "btn_bleu"
+widget "*admin_btn_ajouter"     style "btn_bleu"
+widget "*admin_btn_supprimer"   style "btn_rouge"

@@ -15,7 +15,7 @@
 int
 main (int argc, char *argv[])
 {
-  GtkWidget *window_test;
+    GtkWidget *window_admin_personnel;
 
 #ifdef ENABLE_NLS
   bindtextdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR);
@@ -33,8 +33,9 @@ main (int argc, char *argv[])
    * (except popup menus), just so that you see something after building
    * the project. Delete any components that you don't want shown initially.
    */
-  window_test = create_window_test ();
-  gtk_widget_show (window_test);
+  gtk_rc_parse (PACKAGE_DATA_DIR "/gtkrc");
+  window_admin_personnel = create_window_admin_personnel ();
+  gtk_widget_show (window_admin_personnel);
 
   gtk_main ();
   return 0;

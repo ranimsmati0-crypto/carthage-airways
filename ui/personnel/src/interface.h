@@ -3,3 +3,4 @@
  */
 
 GtkWidget* create_window_test (void);
+GtkWidget* create_window_admin_personnel (void);
