@@ -1,0 +1,33 @@
+style "carthage-dark"
+{
+  engine ""
+  bg[NORMAL]        = "#0F1B2D"
+  bg[PRELIGHT]      = "#1B2B45"
+  bg[ACTIVE]        = "#1B2B45"
+  bg[SELECTED]      = "#2F80ED"
+  bg[INSENSITIVE]   = "#0F1B2D"
+  fg[NORMAL]        = "#E6EDF7"
+  fg[PRELIGHT]      = "#FFFFFF"
+  fg[ACTIVE]        = "#E6EDF7"
+  fg[SELECTED]      = "#FFFFFF"
+  fg[INSENSITIVE]   = "#6B7A90"
+  base[NORMAL]      = "#16243A"
+  base[SELECTED]    = "#2F80ED"
+  base[INSENSITIVE] = "#121E30"
+  text[NORMAL]      = "#E6EDF7"
+  text[SELECTED]    = "#FFFFFF"
+  text[INSENSITIVE] = "#6B7A90"
+}
+widget_class "*" style "carthage-dark"
+
+style "carthage-bleu" = "carthage-dark"
+{
+  bg[NORMAL]   = "#2F80ED"
+  bg[PRELIGHT] = "#4A93F5"
+  bg[ACTIVE]   = "#1F6AD1"
+  fg[NORMAL]   = "#FFFFFF"
+  fg[PRELIGHT] = "#FFFFFF"
+  fg[ACTIVE]   = "#FFFFFF"
+}
+widget "*btn_rechercher" style "carthage-bleu"
+widget "*btn_ajouter"    style "carthage-bleu"
