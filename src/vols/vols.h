@@ -11,6 +11,9 @@ typedef struct {
     char h_arrivee[6];
     char avion[20];
     char statut[15];
+    char escale[30];        /* "Aucune" s'il n'y a pas d'escale */
+    char compagnie[40];
+    char aeroport[5];       /* code IATA, ex. TUN */
 } Vol;
 
 int  vol_existe(int id);
