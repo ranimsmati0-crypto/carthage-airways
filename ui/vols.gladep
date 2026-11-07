@@ -2,9 +2,7 @@
 <!DOCTYPE glade-project SYSTEM "http://glade.gnome.org/glade-project-2.0.dtd">
 
 <glade-project>
-  <name>vols</name>
-  <program_name>vols</program_name>
+  <name>Ui</name>
+  <program_name>ui</program_name>
   <gnome_support>FALSE</gnome_support>
-  <gettext_support>FALSE</gettext_support>
-  <output_build_files>FALSE</output_build_files>
 </glade-project>

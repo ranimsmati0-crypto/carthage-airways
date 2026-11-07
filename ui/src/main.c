@@ -13,6 +13,32 @@
 #include "support.h"
 #include "vols_ui.h"
 
+/* Aligne a gauche le contenu (icone + texte) des boutons du menu lateral */
+static void aligner_menu (GtkWidget *fenetre)
+{
+  const char *noms[] = {
+    "btn_menu_tableau", "btn_menu_vols", "btn_menu_reservations",
+    "btn_menu_passagers", "btn_menu_personnel", "btn_menu_avions",
+    "btn_menu_aeroports", "btn_menu_parametres", NULL
+  };
+  int i;
+
+  for (i = 0; noms[i] != NULL; i++)
+    {
+      GtkWidget *bouton = lookup_widget (fenetre, noms[i]);
+      GtkWidget *enfant;
+
+      if (bouton == NULL)
+        continue;
+      enfant = gtk_bin_get_child (GTK_BIN (bouton));
+      if (GTK_IS_ALIGNMENT (enfant))
+        {
+          gtk_alignment_set (GTK_ALIGNMENT (enfant), 0.0, 0.5, 0.0, 0.0);
+          gtk_alignment_set_padding (GTK_ALIGNMENT (enfant), 0, 0, 12, 0);
+        }
+    }
+}
+
 int
 main (int argc, char *argv[])
 {
@@ -23,17 +49,16 @@ main (int argc, char *argv[])
   gtk_rc_parse ("data/theme.rc");
 
   add_pixmap_directory (PACKAGE_DATA_DIR "/" PACKAGE "/pixmaps");
+  add_pixmap_directory (PACKAGE_SOURCE_DIR "/pixmaps");
 
-  /*
-   * The following code was added by Glade to create one of each component
-   * (except popup menus), just so that you see something after building
-   * the project. Delete any components that you don't want shown initially.
-   */
   fenetre_admin_vols = create_fenetre_admin_vols ();
+  aligner_menu (fenetre_admin_vols);
   gtk_widget_show (fenetre_admin_vols);
   afficher_vols (GTK_TREE_VIEW (lookup_widget (fenetre_admin_vols, "treeview_vols")), NULL);
 
   gtk_main ();
   return 0;
 }
+
+
 

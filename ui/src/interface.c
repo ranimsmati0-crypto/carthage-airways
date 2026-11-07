@@ -30,7 +30,51 @@ GtkWidget*
 create_fenetre_admin_vols (void)
 {
   GtkWidget *fenetre_admin_vols;
+  GtkWidget *hbox_principal;
+  GtkWidget *vbox_menu;
+  GtkWidget *label_logo_menu;
+  GtkWidget *btn_menu_tableau;
+  GtkWidget *alignment2;
+  GtkWidget *hbox6;
+  GtkWidget *image2;
+  GtkWidget *label2;
+  GtkWidget *btn_menu_vols;
+  GtkWidget *alignment1;
+  GtkWidget *hbox5;
+  GtkWidget *image1;
+  GtkWidget *label1;
+  GtkWidget *btn_menu_reservations;
+  GtkWidget *alignment3;
+  GtkWidget *hbox7;
+  GtkWidget *image3;
+  GtkWidget *label3;
+  GtkWidget *btn_menu_passagers;
+  GtkWidget *alignment4;
+  GtkWidget *hbox8;
+  GtkWidget *image4;
+  GtkWidget *label4;
+  GtkWidget *btn_menu_personnel;
+  GtkWidget *alignment5;
+  GtkWidget *hbox9;
+  GtkWidget *image5;
+  GtkWidget *label5;
+  GtkWidget *btn_menu_avions;
+  GtkWidget *alignment6;
+  GtkWidget *hbox10;
+  GtkWidget *image6;
+  GtkWidget *label6;
+  GtkWidget *btn_menu_aeroports;
+  GtkWidget *alignment7;
+  GtkWidget *hbox11;
+  GtkWidget *image7;
+  GtkWidget *label7;
+  GtkWidget *btn_menu_parametres;
+  GtkWidget *alignment8;
+  GtkWidget *hbox12;
+  GtkWidget *image8;
+  GtkWidget *label8;
   GtkWidget *vbox1;
+  GtkWidget *label_titre;
   GtkWidget *table1;
   GtkWidget *Label_depart_;
   GtkWidget *entry_depart;
@@ -62,18 +106,209 @@ create_fenetre_admin_vols (void)
   GtkWidget *btn_affecter;
 
   fenetre_admin_vols = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-  gtk_window_set_title (GTK_WINDOW (fenetre_admin_vols), "Gestion des vols - Administrateur");
+  gtk_widget_set_size_request (fenetre_admin_vols, -1, 460);
+  gtk_window_set_title (GTK_WINDOW (fenetre_admin_vols), _("Gestion des vols - Administrateur"));
   gtk_window_set_default_size (GTK_WINDOW (fenetre_admin_vols), 900, 500);
+
+  hbox_principal = gtk_hbox_new (FALSE, 0);
+  gtk_widget_show (hbox_principal);
+  gtk_container_add (GTK_CONTAINER (fenetre_admin_vols), hbox_principal);
+
+  vbox_menu = gtk_vbox_new (FALSE, 0);
+  gtk_widget_show (vbox_menu);
+  gtk_box_pack_start (GTK_BOX (hbox_principal), vbox_menu, FALSE, TRUE, 0);
+  gtk_widget_set_size_request (vbox_menu, 180, -1);
+
+  label_logo_menu = gtk_label_new (_("<span weight=\"bold\" size=\"large\">Carthage Airways</span>"));
+  gtk_widget_show (label_logo_menu);
+  gtk_box_pack_start (GTK_BOX (vbox_menu), label_logo_menu, FALSE, FALSE, 18);
+  gtk_label_set_use_markup (GTK_LABEL (label_logo_menu), TRUE);
+
+  btn_menu_tableau = gtk_button_new ();
+  gtk_widget_show (btn_menu_tableau);
+  gtk_box_pack_start (GTK_BOX (vbox_menu), btn_menu_tableau, FALSE, TRUE, 0);
+  gtk_button_set_relief (GTK_BUTTON (btn_menu_tableau), GTK_RELIEF_NONE);
+
+  alignment2 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment2);
+  gtk_container_add (GTK_CONTAINER (btn_menu_tableau), alignment2);
+
+  hbox6 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox6);
+  gtk_container_add (GTK_CONTAINER (alignment2), hbox6);
+
+  image2 = create_pixmap (fenetre_admin_vols, "tableau.png");
+  gtk_widget_show (image2);
+  gtk_box_pack_start (GTK_BOX (hbox6), image2, FALSE, FALSE, 0);
+
+  label2 = gtk_label_new_with_mnemonic (_("Tableau de bord"));
+  gtk_widget_show (label2);
+  gtk_box_pack_start (GTK_BOX (hbox6), label2, FALSE, FALSE, 0);
+
+  btn_menu_vols = gtk_button_new ();
+  gtk_widget_show (btn_menu_vols);
+  gtk_box_pack_start (GTK_BOX (vbox_menu), btn_menu_vols, FALSE, FALSE, 0);
+  gtk_button_set_relief (GTK_BUTTON (btn_menu_vols), GTK_RELIEF_NONE);
+
+  alignment1 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment1);
+  gtk_container_add (GTK_CONTAINER (btn_menu_vols), alignment1);
+
+  hbox5 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox5);
+  gtk_container_add (GTK_CONTAINER (alignment1), hbox5);
+
+  image1 = create_pixmap (fenetre_admin_vols, "vols.png");
+  gtk_widget_show (image1);
+  gtk_box_pack_start (GTK_BOX (hbox5), image1, FALSE, FALSE, 0);
+
+  label1 = gtk_label_new_with_mnemonic (_("Vols"));
+  gtk_widget_show (label1);
+  gtk_box_pack_start (GTK_BOX (hbox5), label1, FALSE, FALSE, 0);
+
+  btn_menu_reservations = gtk_button_new ();
+  gtk_widget_show (btn_menu_reservations);
+  gtk_box_pack_start (GTK_BOX (vbox_menu), btn_menu_reservations, FALSE, FALSE, 0);
+  gtk_button_set_relief (GTK_BUTTON (btn_menu_reservations), GTK_RELIEF_NONE);
+
+  alignment3 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment3);
+  gtk_container_add (GTK_CONTAINER (btn_menu_reservations), alignment3);
+
+  hbox7 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox7);
+  gtk_container_add (GTK_CONTAINER (alignment3), hbox7);
+
+  image3 = create_pixmap (fenetre_admin_vols, "reservations.png");
+  gtk_widget_show (image3);
+  gtk_box_pack_start (GTK_BOX (hbox7), image3, FALSE, FALSE, 0);
+
+  label3 = gtk_label_new_with_mnemonic (_("Reservations"));
+  gtk_widget_show (label3);
+  gtk_box_pack_start (GTK_BOX (hbox7), label3, FALSE, FALSE, 0);
+
+  btn_menu_passagers = gtk_button_new ();
+  gtk_widget_show (btn_menu_passagers);
+  gtk_box_pack_start (GTK_BOX (vbox_menu), btn_menu_passagers, FALSE, FALSE, 0);
+  gtk_button_set_relief (GTK_BUTTON (btn_menu_passagers), GTK_RELIEF_NONE);
+
+  alignment4 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment4);
+  gtk_container_add (GTK_CONTAINER (btn_menu_passagers), alignment4);
+
+  hbox8 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox8);
+  gtk_container_add (GTK_CONTAINER (alignment4), hbox8);
+
+  image4 = create_pixmap (fenetre_admin_vols, "passagers.png");
+  gtk_widget_show (image4);
+  gtk_box_pack_start (GTK_BOX (hbox8), image4, FALSE, FALSE, 0);
+
+  label4 = gtk_label_new_with_mnemonic (_("Passagers"));
+  gtk_widget_show (label4);
+  gtk_box_pack_start (GTK_BOX (hbox8), label4, FALSE, FALSE, 0);
+
+  btn_menu_personnel = gtk_button_new ();
+  gtk_widget_show (btn_menu_personnel);
+  gtk_box_pack_start (GTK_BOX (vbox_menu), btn_menu_personnel, FALSE, FALSE, 0);
+  gtk_button_set_relief (GTK_BUTTON (btn_menu_personnel), GTK_RELIEF_NONE);
+
+  alignment5 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment5);
+  gtk_container_add (GTK_CONTAINER (btn_menu_personnel), alignment5);
+
+  hbox9 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox9);
+  gtk_container_add (GTK_CONTAINER (alignment5), hbox9);
+
+  image5 = create_pixmap (fenetre_admin_vols, "personnel.png");
+  gtk_widget_show (image5);
+  gtk_box_pack_start (GTK_BOX (hbox9), image5, FALSE, FALSE, 0);
+
+  label5 = gtk_label_new_with_mnemonic (_("Personnel"));
+  gtk_widget_show (label5);
+  gtk_box_pack_start (GTK_BOX (hbox9), label5, FALSE, FALSE, 0);
+
+  btn_menu_avions = gtk_button_new ();
+  gtk_widget_show (btn_menu_avions);
+  gtk_box_pack_start (GTK_BOX (vbox_menu), btn_menu_avions, FALSE, FALSE, 0);
+  gtk_button_set_relief (GTK_BUTTON (btn_menu_avions), GTK_RELIEF_NONE);
+
+  alignment6 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment6);
+  gtk_container_add (GTK_CONTAINER (btn_menu_avions), alignment6);
+
+  hbox10 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox10);
+  gtk_container_add (GTK_CONTAINER (alignment6), hbox10);
+
+  image6 = create_pixmap (fenetre_admin_vols, "avions.png");
+  gtk_widget_show (image6);
+  gtk_box_pack_start (GTK_BOX (hbox10), image6, FALSE, FALSE, 0);
+
+  label6 = gtk_label_new_with_mnemonic (_("Avions"));
+  gtk_widget_show (label6);
+  gtk_box_pack_start (GTK_BOX (hbox10), label6, FALSE, FALSE, 0);
+
+  btn_menu_aeroports = gtk_button_new ();
+  gtk_widget_show (btn_menu_aeroports);
+  gtk_box_pack_start (GTK_BOX (vbox_menu), btn_menu_aeroports, FALSE, FALSE, 0);
+  gtk_button_set_relief (GTK_BUTTON (btn_menu_aeroports), GTK_RELIEF_NONE);
+
+  alignment7 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment7);
+  gtk_container_add (GTK_CONTAINER (btn_menu_aeroports), alignment7);
+
+  hbox11 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox11);
+  gtk_container_add (GTK_CONTAINER (alignment7), hbox11);
+
+  image7 = create_pixmap (fenetre_admin_vols, "aeroports.png");
+  gtk_widget_show (image7);
+  gtk_box_pack_start (GTK_BOX (hbox11), image7, FALSE, FALSE, 0);
+
+  label7 = gtk_label_new_with_mnemonic (_("Aeroports"));
+  gtk_widget_show (label7);
+  gtk_box_pack_start (GTK_BOX (hbox11), label7, FALSE, FALSE, 0);
+
+  btn_menu_parametres = gtk_button_new ();
+  gtk_widget_show (btn_menu_parametres);
+  gtk_box_pack_start (GTK_BOX (vbox_menu), btn_menu_parametres, FALSE, FALSE, 0);
+  gtk_button_set_relief (GTK_BUTTON (btn_menu_parametres), GTK_RELIEF_NONE);
+
+  alignment8 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment8);
+  gtk_container_add (GTK_CONTAINER (btn_menu_parametres), alignment8);
+
+  hbox12 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox12);
+  gtk_container_add (GTK_CONTAINER (alignment8), hbox12);
+
+  image8 = create_pixmap (fenetre_admin_vols, "parametres.png");
+  gtk_widget_show (image8);
+  gtk_box_pack_start (GTK_BOX (hbox12), image8, FALSE, FALSE, 0);
+
+  label8 = gtk_label_new_with_mnemonic (_("Parametres"));
+  gtk_widget_show (label8);
+  gtk_box_pack_start (GTK_BOX (hbox12), label8, FALSE, FALSE, 0);
 
   vbox1 = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (vbox1);
-  gtk_container_add (GTK_CONTAINER (fenetre_admin_vols), vbox1);
+  gtk_box_pack_start (GTK_BOX (hbox_principal), vbox1, TRUE, TRUE, 0);
 
-  table1 = gtk_table_new (4, 4, FALSE);
+  label_titre = gtk_label_new (_("<span size=\"xx-large\" weight=\"bold\">Gestion des vols</span>"));
+  gtk_widget_show (label_titre);
+  gtk_box_pack_start (GTK_BOX (vbox1), label_titre, FALSE, TRUE, 11);
+  gtk_label_set_use_markup (GTK_LABEL (label_titre), TRUE);
+
+  table1 = gtk_table_new (3, 4, FALSE);
   gtk_widget_show (table1);
-  gtk_box_pack_start (GTK_BOX (vbox1), table1, TRUE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX (vbox1), table1, FALSE, FALSE, 0);
+  gtk_container_set_border_width (GTK_CONTAINER (table1), 10);
+  gtk_table_set_row_spacings (GTK_TABLE (table1), 6);
+  gtk_table_set_col_spacings (GTK_TABLE (table1), 12);
 
-  Label_depart_ = gtk_label_new ("Depart :");
+  Label_depart_ = gtk_label_new (_("Depart :"));
   gtk_widget_show (Label_depart_);
   gtk_table_attach (GTK_TABLE (table1), Label_depart_, 0, 1, 0, 1,
                     (GtkAttachOptions) (GTK_FILL),
@@ -87,7 +322,7 @@ create_fenetre_admin_vols (void)
                     (GtkAttachOptions) (0), 0, 0);
   gtk_entry_set_invisible_char (GTK_ENTRY (entry_depart), 8226);
 
-  Label_destination__ = gtk_label_new ("Destination :");
+  Label_destination__ = gtk_label_new (_("Destination :"));
   gtk_widget_show (Label_destination__);
   gtk_table_attach (GTK_TABLE (table1), Label_destination__, 2, 3, 0, 1,
                     (GtkAttachOptions) (GTK_FILL),
@@ -101,7 +336,7 @@ create_fenetre_admin_vols (void)
                     (GtkAttachOptions) (0), 0, 0);
   gtk_entry_set_invisible_char (GTK_ENTRY (entry_destination), 8226);
 
-  check_date_depart = gtk_check_button_new_with_mnemonic ("Date de depart : ");
+  check_date_depart = gtk_check_button_new_with_mnemonic (_("Date de depart : "));
   gtk_widget_show (check_date_depart);
   gtk_table_attach (GTK_TABLE (table1), check_date_depart, 0, 1, 1, 2,
                     (GtkAttachOptions) (GTK_FILL),
@@ -135,7 +370,7 @@ create_fenetre_admin_vols (void)
   gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (spin_annee_depart), TRUE);
   gtk_spin_button_set_wrap (GTK_SPIN_BUTTON (spin_annee_depart), TRUE);
 
-  check_date_arrivee = gtk_check_button_new_with_mnemonic ("Date arrivee :");
+  check_date_arrivee = gtk_check_button_new_with_mnemonic (_("Date arrivee :"));
   gtk_widget_show (check_date_arrivee);
   gtk_table_attach (GTK_TABLE (table1), check_date_arrivee, 0, 1, 2, 3,
                     (GtkAttachOptions) (GTK_FILL),
@@ -169,11 +404,11 @@ create_fenetre_admin_vols (void)
   gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (spin_annee_arrivee), TRUE);
   gtk_spin_button_set_snap_to_ticks (GTK_SPIN_BUTTON (spin_annee_arrivee), TRUE);
 
-  btn_rechercher = gtk_button_new_with_mnemonic ("Rechercher");
+  btn_rechercher = gtk_button_new_with_mnemonic (_("Rechercher"));
   gtk_widget_show (btn_rechercher);
-  gtk_table_attach (GTK_TABLE (table1), btn_rechercher, 0, 1, 3, 4,
-                    (GtkAttachOptions) (GTK_FILL),
-                    (GtkAttachOptions) (0), 0, 0);
+  gtk_table_attach (GTK_TABLE (table1), btn_rechercher, 2, 4, 1, 3,
+                    (GtkAttachOptions) (GTK_EXPAND),
+                    (GtkAttachOptions) (GTK_EXPAND), 0, 0);
 
   scrolledwindow1 = gtk_scrolled_window_new (NULL, NULL);
   gtk_widget_show (scrolledwindow1);
@@ -184,25 +419,30 @@ create_fenetre_admin_vols (void)
   gtk_widget_show (treeview_vols);
   gtk_container_add (GTK_CONTAINER (scrolledwindow1), treeview_vols);
 
-  hbox4 = gtk_hbox_new (FALSE, 0);
+  hbox4 = gtk_hbox_new (FALSE, 10);
   gtk_widget_show (hbox4);
-  gtk_box_pack_start (GTK_BOX (vbox1), hbox4, TRUE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX (vbox1), hbox4, FALSE, FALSE, 0);
+  gtk_container_set_border_width (GTK_CONTAINER (hbox4), 10);
 
-  btn_ajouter = gtk_button_new_with_mnemonic ("     Ajouter   \n");
+  btn_ajouter = gtk_button_new_with_mnemonic (_("     Ajouter   \n"));
   gtk_widget_show (btn_ajouter);
   gtk_box_pack_start (GTK_BOX (hbox4), btn_ajouter, FALSE, FALSE, 0);
+  gtk_widget_set_size_request (btn_ajouter, 120, 32);
 
-  btn_modifier = gtk_button_new_with_mnemonic ("Modifier\n");
+  btn_modifier = gtk_button_new_with_mnemonic (_("Modifier\n"));
   gtk_widget_show (btn_modifier);
   gtk_box_pack_start (GTK_BOX (hbox4), btn_modifier, FALSE, FALSE, 0);
+  gtk_widget_set_size_request (btn_modifier, 120, 32);
 
-  btn_supprimer = gtk_button_new_with_mnemonic ("Supprimer\n");
+  btn_supprimer = gtk_button_new_with_mnemonic (_("Supprimer\n"));
   gtk_widget_show (btn_supprimer);
   gtk_box_pack_start (GTK_BOX (hbox4), btn_supprimer, FALSE, FALSE, 0);
+  gtk_widget_set_size_request (btn_supprimer, 120, 32);
 
-  btn_affecter = gtk_button_new_with_mnemonic ("Affecter un avion\n\n\n");
+  btn_affecter = gtk_button_new_with_mnemonic (_("Affecter un avion\n\n\n"));
   gtk_widget_show (btn_affecter);
   gtk_box_pack_start (GTK_BOX (hbox4), btn_affecter, FALSE, FALSE, 0);
+  gtk_widget_set_size_request (btn_affecter, 150, 32);
 
   g_signal_connect ((gpointer) check_date_depart, "toggled",
                     G_CALLBACK (on_check_date_depart_toggled),
@@ -228,7 +468,51 @@ create_fenetre_admin_vols (void)
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
   GLADE_HOOKUP_OBJECT_NO_REF (fenetre_admin_vols, fenetre_admin_vols, "fenetre_admin_vols");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, hbox_principal, "hbox_principal");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, vbox_menu, "vbox_menu");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, label_logo_menu, "label_logo_menu");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, btn_menu_tableau, "btn_menu_tableau");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, alignment2, "alignment2");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, hbox6, "hbox6");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, image2, "image2");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, label2, "label2");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, btn_menu_vols, "btn_menu_vols");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, alignment1, "alignment1");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, hbox5, "hbox5");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, image1, "image1");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, label1, "label1");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, btn_menu_reservations, "btn_menu_reservations");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, alignment3, "alignment3");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, hbox7, "hbox7");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, image3, "image3");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, label3, "label3");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, btn_menu_passagers, "btn_menu_passagers");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, alignment4, "alignment4");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, hbox8, "hbox8");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, image4, "image4");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, label4, "label4");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, btn_menu_personnel, "btn_menu_personnel");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, alignment5, "alignment5");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, hbox9, "hbox9");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, image5, "image5");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, label5, "label5");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, btn_menu_avions, "btn_menu_avions");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, alignment6, "alignment6");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, hbox10, "hbox10");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, image6, "image6");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, label6, "label6");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, btn_menu_aeroports, "btn_menu_aeroports");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, alignment7, "alignment7");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, hbox11, "hbox11");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, image7, "image7");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, label7, "label7");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, btn_menu_parametres, "btn_menu_parametres");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, alignment8, "alignment8");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, hbox12, "hbox12");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, image8, "image8");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, label8, "label8");
   GLADE_HOOKUP_OBJECT (fenetre_admin_vols, vbox1, "vbox1");
+  GLADE_HOOKUP_OBJECT (fenetre_admin_vols, label_titre, "label_titre");
   GLADE_HOOKUP_OBJECT (fenetre_admin_vols, table1, "table1");
   GLADE_HOOKUP_OBJECT (fenetre_admin_vols, Label_depart_, "Label_depart_");
   GLADE_HOOKUP_OBJECT (fenetre_admin_vols, entry_depart, "entry_depart");
@@ -310,7 +594,7 @@ create_fenetre_ajoute_vol (void)
   GtkWidget *btn_annuler_aj;
 
   fenetre_ajoute_vol = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-  gtk_window_set_title (GTK_WINDOW (fenetre_ajoute_vol), "Ajouter un vol");
+  gtk_window_set_title (GTK_WINDOW (fenetre_ajoute_vol), _("Ajouter un vol"));
   gtk_window_set_position (GTK_WINDOW (fenetre_ajoute_vol), GTK_WIN_POS_CENTER);
   gtk_window_set_modal (GTK_WINDOW (fenetre_ajoute_vol), TRUE);
   gtk_window_set_default_size (GTK_WINDOW (fenetre_ajoute_vol), 450, -1);
@@ -323,21 +607,21 @@ create_fenetre_ajoute_vol (void)
   gtk_table_set_row_spacings (GTK_TABLE (table_ajout), 6);
   gtk_table_set_col_spacings (GTK_TABLE (table_ajout), 8);
 
-  label_id_aj = gtk_label_new ("ID du vol :");
+  label_id_aj = gtk_label_new (_("ID du vol :"));
   gtk_widget_show (label_id_aj);
   gtk_table_attach (GTK_TABLE (table_ajout), label_id_aj, 0, 1, 0, 1,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
   gtk_misc_set_alignment (GTK_MISC (label_id_aj), 0, 0.5);
 
-  label_depart_aj = gtk_label_new ("Ville de depart :");
+  label_depart_aj = gtk_label_new (_("Ville de depart :"));
   gtk_widget_show (label_depart_aj);
   gtk_table_attach (GTK_TABLE (table_ajout), label_depart_aj, 0, 1, 1, 2,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
   gtk_misc_set_alignment (GTK_MISC (label_depart_aj), 0, 0.5);
 
-  label_destination_aj = gtk_label_new ("Destination :");
+  label_destination_aj = gtk_label_new (_("Destination :"));
   gtk_widget_show (label_destination_aj);
   gtk_table_attach (GTK_TABLE (table_ajout), label_destination_aj, 0, 1, 2, 3,
                     (GtkAttachOptions) (GTK_FILL),
@@ -365,7 +649,7 @@ create_fenetre_ajoute_vol (void)
                     (GtkAttachOptions) (0), 0, 0);
   gtk_entry_set_invisible_char (GTK_ENTRY (entry_destination_aj), 8226);
 
-  label_date_dep_aj = gtk_label_new ("Date de depart :");
+  label_date_dep_aj = gtk_label_new (_("Date de depart :"));
   gtk_widget_show (label_date_dep_aj);
   gtk_table_attach (GTK_TABLE (table_ajout), label_date_dep_aj, 0, 1, 3, 4,
                     (GtkAttachOptions) (GTK_FILL),
@@ -393,7 +677,7 @@ create_fenetre_ajoute_vol (void)
   gtk_widget_show (spin_annee_dep_aj);
   gtk_box_pack_start (GTK_BOX (box_date_dep_aj), spin_annee_dep_aj, TRUE, TRUE, 0);
 
-  label_heure_dep_aj = gtk_label_new ("Heure de depart :");
+  label_heure_dep_aj = gtk_label_new (_("Heure de depart :"));
   gtk_widget_show (label_heure_dep_aj);
   gtk_table_attach (GTK_TABLE (table_ajout), label_heure_dep_aj, 0, 1, 4, 5,
                     (GtkAttachOptions) (GTK_FILL),
@@ -416,7 +700,7 @@ create_fenetre_ajoute_vol (void)
   gtk_widget_show (spin_min_dep_aj);
   gtk_box_pack_start (GTK_BOX (box_heure_dep_aj), spin_min_dep_aj, TRUE, TRUE, 0);
 
-  label_date_arr_aj = gtk_label_new ("Date arivee :");
+  label_date_arr_aj = gtk_label_new (_("Date arivee :"));
   gtk_widget_show (label_date_arr_aj);
   gtk_table_attach (GTK_TABLE (table_ajout), label_date_arr_aj, 0, 1, 5, 6,
                     (GtkAttachOptions) (GTK_FILL),
@@ -444,7 +728,7 @@ create_fenetre_ajoute_vol (void)
   gtk_widget_show (spin_annee_arr_aj);
   gtk_box_pack_start (GTK_BOX (box_date_arr_aj), spin_annee_arr_aj, TRUE, TRUE, 0);
 
-  label_heure_arr_aj = gtk_label_new ("heure arrivee :");
+  label_heure_arr_aj = gtk_label_new (_("heure arrivee :"));
   gtk_widget_show (label_heure_arr_aj);
   gtk_table_attach (GTK_TABLE (table_ajout), label_heure_arr_aj, 0, 1, 6, 7,
                     (GtkAttachOptions) (GTK_FILL),
@@ -467,7 +751,7 @@ create_fenetre_ajoute_vol (void)
   gtk_widget_show (spin_min_arr_aj);
   gtk_box_pack_start (GTK_BOX (box_heure_arr_aj), spin_min_arr_aj, TRUE, TRUE, 0);
 
-  label_duree_aj = gtk_label_new ("Duree :");
+  label_duree_aj = gtk_label_new (_("Duree :"));
   gtk_widget_show (label_duree_aj);
   gtk_table_attach (GTK_TABLE (table_ajout), label_duree_aj, 0, 1, 7, 8,
                     (GtkAttachOptions) (GTK_FILL),
@@ -482,7 +766,7 @@ create_fenetre_ajoute_vol (void)
   gtk_editable_set_editable (GTK_EDITABLE (entry_duree_aj), FALSE);
   gtk_entry_set_invisible_char (GTK_ENTRY (entry_duree_aj), 8226);
 
-  label_escale_aj = gtk_label_new ("Escale :");
+  label_escale_aj = gtk_label_new (_("Escale :"));
   gtk_widget_show (label_escale_aj);
   gtk_table_attach (GTK_TABLE (table_ajout), label_escale_aj, 0, 1, 8, 9,
                     (GtkAttachOptions) (GTK_FILL),
@@ -504,7 +788,7 @@ create_fenetre_ajoute_vol (void)
   gtk_box_pack_start (GTK_BOX (box_escale_aj), entry_escale_aj, TRUE, TRUE, 0);
   gtk_entry_set_invisible_char (GTK_ENTRY (entry_escale_aj), 8226);
 
-  label_compagnie_aj = gtk_label_new ("Compagnie :");
+  label_compagnie_aj = gtk_label_new (_("Compagnie :"));
   gtk_widget_show (label_compagnie_aj);
   gtk_table_attach (GTK_TABLE (table_ajout), label_compagnie_aj, 0, 1, 9, 10,
                     (GtkAttachOptions) (GTK_FILL),
@@ -518,7 +802,7 @@ create_fenetre_ajoute_vol (void)
                     (GtkAttachOptions) (0), 0, 0);
   gtk_entry_set_invisible_char (GTK_ENTRY (entry_compagnie_aj), 8226);
 
-  label_aeroport_aj = gtk_label_new ("Aeroport :");
+  label_aeroport_aj = gtk_label_new (_("Aeroport :"));
   gtk_widget_show (label_aeroport_aj);
   gtk_table_attach (GTK_TABLE (table_ajout), label_aeroport_aj, 0, 1, 10, 11,
                     (GtkAttachOptions) (GTK_FILL),
@@ -538,11 +822,11 @@ create_fenetre_ajoute_vol (void)
                     (GtkAttachOptions) (0),
                     (GtkAttachOptions) (0), 0, 0);
 
-  btn_enregistrer_aj = gtk_button_new_with_mnemonic ("Enregistrer");
+  btn_enregistrer_aj = gtk_button_new_with_mnemonic (_("Enregistrer"));
   gtk_widget_show (btn_enregistrer_aj);
   gtk_box_pack_start (GTK_BOX (box_boutons_aj), btn_enregistrer_aj, FALSE, FALSE, 0);
 
-  btn_annuler_aj = gtk_button_new_with_mnemonic ("Annuler ");
+  btn_annuler_aj = gtk_button_new_with_mnemonic (_("Annuler "));
   gtk_widget_show (btn_annuler_aj);
   gtk_box_pack_start (GTK_BOX (box_boutons_aj), btn_annuler_aj, FALSE, FALSE, 0);
 

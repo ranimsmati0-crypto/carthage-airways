@@ -58,3 +58,7 @@ dkms.conf
 *.bak
 *~
 /test_vols
+vols
+*.o
+*.bak
+*~

@@ -3,8 +3,11 @@
 #endif
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <gtk/gtk.h>
 
+
+#include "vols.h"
 #include "callbacks.h"
 #include "interface.h"
 #include "support.h"
@@ -115,11 +118,59 @@ on_btn_modifier_clicked                (GtkButton       *button,
 }
 
 
+static void message_vol (GtkWidget *parent, GtkMessageType type, const char *texte)
+{
+  GtkWidget *dialogue = gtk_message_dialog_new (GTK_WINDOW (parent),
+                                                GTK_DIALOG_MODAL, type,
+                                                GTK_BUTTONS_OK, "%s", texte);
+  gtk_dialog_run (GTK_DIALOG (dialogue));
+  gtk_widget_destroy (dialogue);
+}
+
 void
 on_btn_supprimer_clicked               (GtkButton       *button,
                                         gpointer         user_data)
 {
+  GtkWidget *fenetre = gtk_widget_get_toplevel (GTK_WIDGET (button));
+  GtkWidget *treeview = lookup_widget (fenetre, "treeview_vols");
+  GtkTreeSelection *selection;
+  GtkTreeModel *model;
+  GtkTreeIter iter;
+  gchar *id_texte = NULL;
+  GtkWidget *confirmation;
+  gint reponse;
+  char question[100];
+  int id;
 
+  selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
+  if (!gtk_tree_selection_get_selected (selection, &model, &iter))
+    {
+      message_vol (fenetre, GTK_MESSAGE_WARNING,
+                   "Veuillez selectionner un vol a supprimer.");
+      return;
+    }
+
+  gtk_tree_model_get (model, &iter, 0, &id_texte, -1);
+  id = atoi (id_texte);
+  g_free (id_texte);
+
+  sprintf (question, "Voulez-vous vraiment supprimer le vol %d ?", id);
+  confirmation = gtk_message_dialog_new (GTK_WINDOW (fenetre),
+                                         GTK_DIALOG_MODAL,
+                                         GTK_MESSAGE_QUESTION,
+                                         GTK_BUTTONS_YES_NO, "%s", question);
+  reponse = gtk_dialog_run (GTK_DIALOG (confirmation));
+  gtk_widget_destroy (confirmation);
+  if (reponse != GTK_RESPONSE_YES)
+    return;
+
+  if (supprimer_vol (id))
+    {
+      afficher_vols (GTK_TREE_VIEW (treeview), NULL);
+      message_vol (fenetre, GTK_MESSAGE_INFO, "Vol supprime avec succes.");
+    }
+  else
+    message_vol (fenetre, GTK_MESSAGE_ERROR, "Impossible de supprimer ce vol.");
 }
 
 
