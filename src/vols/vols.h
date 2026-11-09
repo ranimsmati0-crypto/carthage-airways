@@ -5,15 +5,15 @@ typedef struct {
     int  id;
     char depart[30];
     char destination[30];
-    char date[11];          /* date de départ */
+    char date[11];          /* date de depart */
     char h_depart[6];
     char date_arrivee[11];
     char h_arrivee[6];
     char avion[20];
     char statut[15];
-    char escale[30];        /* "Aucune" s'il n'y a pas d'escale */
     char compagnie[40];
-    char aeroport[5];       /* code IATA, ex. TUN */
+    char aeroport[5];
+    char duree[8];       /* code IATA, ex. TUN */
 } Vol;
 
 int  vol_existe(int id);

@@ -6,12 +6,14 @@
 #define MAX_VOLS 200
 
 enum { COL_ID, COL_DEPART, COL_DEST, COL_DATE, COL_HDEP, COL_DARR,
-       COL_HARR, COL_DUREE, COL_AVION, COL_STATUT, NB_COL };
+       COL_HARR, COL_DUREE, COL_COMPAGNIE, COL_AEROPORT, COL_AVION,
+       COL_STATUT, NB_COL };
 
 static void creer_colonnes(GtkTreeView *tv)
 {
     const char *titres[NB_COL] = {"ID", "Depart", "Destination", "Date depart",
-        "Heure depart", "Date arrivee", "Heure arrivee", "Duree", "Avion", "Statut"};
+        "Heure depart", "Date arrivee", "Heure arrivee", "Duree",
+        "Compagnie", "Aeroport", "Avion", "Statut"};
     int i;
 
     for (i = 0; i < NB_COL; i++) {
@@ -35,7 +37,7 @@ static void remplir_tableau(GtkTreeView *tv, Vol tab[], int n)
     store = gtk_list_store_new(NB_COL,
         G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING,
         G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING,
-        G_TYPE_STRING, G_TYPE_STRING);
+        G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
 
     for (i = 0; i < n; i++) {
         sprintf(id, "%d", tab[i].id);
@@ -50,6 +52,8 @@ static void remplir_tableau(GtkTreeView *tv, Vol tab[], int n)
             COL_DARR, tab[i].date_arrivee,
             COL_HARR, tab[i].h_arrivee,
             COL_DUREE, duree,
+            COL_COMPAGNIE, tab[i].compagnie,
+            COL_AEROPORT, tab[i].aeroport,
             COL_AVION, tab[i].avion,
             COL_STATUT, tab[i].statut,
             -1);

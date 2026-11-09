@@ -5,18 +5,16 @@
 
 #define FICHIER  "data/vols.txt"
 #define TEMP     "data/vols.tmp"
-#define LECTURE  "%d;%29[^;];%29[^;];%10[^;];%5[^;];%10[^;];%5[^;];%19[^;];%14[^;];%29[^;];%39[^;];%4[^\n]\n"
+#define LECTURE  "%d;%29[^;];%29[^;];%10[^;];%5[^;];%10[^;];%5[^;];%19[^;];%14[^;];%39[^;];%4[^;];%7[^\n]\n"
 #define ECRITURE "%d;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s\n"
 #define NB_CHAMPS 12
 
 #define LIRE_ARGS(v) &(v).id, (v).depart, (v).destination, (v).date, \
                      (v).h_depart, (v).date_arrivee, (v).h_arrivee, \
-                     (v).avion, (v).statut, (v).escale, (v).compagnie, \
-                     (v).aeroport
+                     (v).avion, (v).statut, (v).compagnie, (v).aeroport, (v).duree
 #define ECRIRE_ARGS(v) (v).id, (v).depart, (v).destination, (v).date, \
                        (v).h_depart, (v).date_arrivee, (v).h_arrivee, \
-                       (v).avion, (v).statut, (v).escale, (v).compagnie, \
-                       (v).aeroport
+                       (v).avion, (v).statut, (v).compagnie, (v).aeroport, (v).duree
 int vol_existe(int id)
 {
     FILE *f = fopen(FICHIER, "r");

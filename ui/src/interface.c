@@ -553,8 +553,8 @@ create_fenetre_ajoute_vol (void)
   GtkWidget *entry_destination_aj;
   GtkWidget *label_date_dep_aj;
   GtkWidget *box_date_dep_aj;
-  GtkObject *spin_jour__dep_aj_adj;
-  GtkWidget *spin_jour__dep_aj;
+  GtkObject *spin_jour_dep_aj_adj;
+  GtkWidget *spin_jour_dep_aj;
   GtkObject *spin_mois_dep_aj_adj;
   GtkWidget *spin_mois_dep_aj;
   GtkObject *spin_annee_dep_aj_adj;
@@ -581,10 +581,6 @@ create_fenetre_ajoute_vol (void)
   GtkWidget *spin_min_arr_aj;
   GtkWidget *label_duree_aj;
   GtkWidget *entry_duree_aj;
-  GtkWidget *label_escale_aj;
-  GtkWidget *box_escale_aj;
-  GtkWidget *check_escale_aj;
-  GtkWidget *entry_escale_aj;
   GtkWidget *label_compagnie_aj;
   GtkWidget *entry_compagnie_aj;
   GtkWidget *label_aeroport_aj;
@@ -600,7 +596,7 @@ create_fenetre_ajoute_vol (void)
   gtk_window_set_default_size (GTK_WINDOW (fenetre_ajoute_vol), 450, -1);
   gtk_window_set_resizable (GTK_WINDOW (fenetre_ajoute_vol), FALSE);
 
-  table_ajout = gtk_table_new (12, 2, FALSE);
+  table_ajout = gtk_table_new (11, 2, FALSE);
   gtk_widget_show (table_ajout);
   gtk_container_add (GTK_CONTAINER (fenetre_ajoute_vol), table_ajout);
   gtk_container_set_border_width (GTK_CONTAINER (table_ajout), 10);
@@ -662,10 +658,10 @@ create_fenetre_ajoute_vol (void)
                     (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
                     (GtkAttachOptions) (GTK_FILL), 0, 0);
 
-  spin_jour__dep_aj_adj = gtk_adjustment_new (1, 1, 31, 1, 10, 0);
-  spin_jour__dep_aj = gtk_spin_button_new (GTK_ADJUSTMENT (spin_jour__dep_aj_adj), 1, 0);
-  gtk_widget_show (spin_jour__dep_aj);
-  gtk_box_pack_start (GTK_BOX (box_date_dep_aj), spin_jour__dep_aj, TRUE, TRUE, 0);
+  spin_jour_dep_aj_adj = gtk_adjustment_new (1, 1, 31, 1, 10, 0);
+  spin_jour_dep_aj = gtk_spin_button_new (GTK_ADJUSTMENT (spin_jour_dep_aj_adj), 1, 0);
+  gtk_widget_show (spin_jour_dep_aj);
+  gtk_box_pack_start (GTK_BOX (box_date_dep_aj), spin_jour_dep_aj, TRUE, TRUE, 0);
 
   spin_mois_dep_aj_adj = gtk_adjustment_new (1, 1, 12, 1, 10, 0);
   spin_mois_dep_aj = gtk_spin_button_new (GTK_ADJUSTMENT (spin_mois_dep_aj_adj), 1, 0);
@@ -700,7 +696,7 @@ create_fenetre_ajoute_vol (void)
   gtk_widget_show (spin_min_dep_aj);
   gtk_box_pack_start (GTK_BOX (box_heure_dep_aj), spin_min_dep_aj, TRUE, TRUE, 0);
 
-  label_date_arr_aj = gtk_label_new (_("Date arivee :"));
+  label_date_arr_aj = gtk_label_new (_("Date arrivee :"));
   gtk_widget_show (label_date_arr_aj);
   gtk_table_attach (GTK_TABLE (table_ajout), label_date_arr_aj, 0, 1, 5, 6,
                     (GtkAttachOptions) (GTK_FILL),
@@ -728,7 +724,7 @@ create_fenetre_ajoute_vol (void)
   gtk_widget_show (spin_annee_arr_aj);
   gtk_box_pack_start (GTK_BOX (box_date_arr_aj), spin_annee_arr_aj, TRUE, TRUE, 0);
 
-  label_heure_arr_aj = gtk_label_new (_("heure arrivee :"));
+  label_heure_arr_aj = gtk_label_new (_("Heure arrivee :"));
   gtk_widget_show (label_heure_arr_aj);
   gtk_table_attach (GTK_TABLE (table_ajout), label_heure_arr_aj, 0, 1, 6, 7,
                     (GtkAttachOptions) (GTK_FILL),
@@ -751,7 +747,7 @@ create_fenetre_ajoute_vol (void)
   gtk_widget_show (spin_min_arr_aj);
   gtk_box_pack_start (GTK_BOX (box_heure_arr_aj), spin_min_arr_aj, TRUE, TRUE, 0);
 
-  label_duree_aj = gtk_label_new (_("Duree :"));
+  label_duree_aj = gtk_label_new (_("Duree (ex : 2h30)"));
   gtk_widget_show (label_duree_aj);
   gtk_table_attach (GTK_TABLE (table_ajout), label_duree_aj, 0, 1, 7, 8,
                     (GtkAttachOptions) (GTK_FILL),
@@ -763,62 +759,39 @@ create_fenetre_ajoute_vol (void)
   gtk_table_attach (GTK_TABLE (table_ajout), entry_duree_aj, 1, 2, 7, 8,
                     (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
-  gtk_editable_set_editable (GTK_EDITABLE (entry_duree_aj), FALSE);
   gtk_entry_set_invisible_char (GTK_ENTRY (entry_duree_aj), 8226);
-
-  label_escale_aj = gtk_label_new (_("Escale :"));
-  gtk_widget_show (label_escale_aj);
-  gtk_table_attach (GTK_TABLE (table_ajout), label_escale_aj, 0, 1, 8, 9,
-                    (GtkAttachOptions) (GTK_FILL),
-                    (GtkAttachOptions) (0), 0, 0);
-  gtk_misc_set_alignment (GTK_MISC (label_escale_aj), 0, 0.5);
-
-  box_escale_aj = gtk_hbox_new (FALSE, 4);
-  gtk_widget_show (box_escale_aj);
-  gtk_table_attach (GTK_TABLE (table_ajout), box_escale_aj, 1, 2, 8, 9,
-                    (GtkAttachOptions) (GTK_FILL),
-                    (GtkAttachOptions) (GTK_FILL), 0, 0);
-
-  check_escale_aj = gtk_check_button_new_with_mnemonic ("");
-  gtk_widget_show (check_escale_aj);
-  gtk_box_pack_start (GTK_BOX (box_escale_aj), check_escale_aj, FALSE, FALSE, 0);
-
-  entry_escale_aj = gtk_entry_new ();
-  gtk_widget_show (entry_escale_aj);
-  gtk_box_pack_start (GTK_BOX (box_escale_aj), entry_escale_aj, TRUE, TRUE, 0);
-  gtk_entry_set_invisible_char (GTK_ENTRY (entry_escale_aj), 8226);
 
   label_compagnie_aj = gtk_label_new (_("Compagnie :"));
   gtk_widget_show (label_compagnie_aj);
-  gtk_table_attach (GTK_TABLE (table_ajout), label_compagnie_aj, 0, 1, 9, 10,
+  gtk_table_attach (GTK_TABLE (table_ajout), label_compagnie_aj, 0, 1, 8, 9,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
   gtk_misc_set_alignment (GTK_MISC (label_compagnie_aj), 0, 0.5);
 
   entry_compagnie_aj = gtk_entry_new ();
   gtk_widget_show (entry_compagnie_aj);
-  gtk_table_attach (GTK_TABLE (table_ajout), entry_compagnie_aj, 1, 2, 9, 10,
+  gtk_table_attach (GTK_TABLE (table_ajout), entry_compagnie_aj, 1, 2, 8, 9,
                     (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
   gtk_entry_set_invisible_char (GTK_ENTRY (entry_compagnie_aj), 8226);
 
   label_aeroport_aj = gtk_label_new (_("Aeroport :"));
   gtk_widget_show (label_aeroport_aj);
-  gtk_table_attach (GTK_TABLE (table_ajout), label_aeroport_aj, 0, 1, 10, 11,
+  gtk_table_attach (GTK_TABLE (table_ajout), label_aeroport_aj, 0, 1, 9, 10,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
   gtk_misc_set_alignment (GTK_MISC (label_aeroport_aj), 0, 0.5);
 
   entry_aeroport_aj = gtk_entry_new ();
   gtk_widget_show (entry_aeroport_aj);
-  gtk_table_attach (GTK_TABLE (table_ajout), entry_aeroport_aj, 1, 2, 10, 11,
+  gtk_table_attach (GTK_TABLE (table_ajout), entry_aeroport_aj, 1, 2, 9, 10,
                     (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
   gtk_entry_set_invisible_char (GTK_ENTRY (entry_aeroport_aj), 8226);
 
   box_boutons_aj = gtk_hbox_new (TRUE, 8);
   gtk_widget_show (box_boutons_aj);
-  gtk_table_attach (GTK_TABLE (table_ajout), box_boutons_aj, 0, 2, 11, 12,
+  gtk_table_attach (GTK_TABLE (table_ajout), box_boutons_aj, 0, 2, 10, 11,
                     (GtkAttachOptions) (0),
                     (GtkAttachOptions) (0), 0, 0);
 
@@ -830,9 +803,6 @@ create_fenetre_ajoute_vol (void)
   gtk_widget_show (btn_annuler_aj);
   gtk_box_pack_start (GTK_BOX (box_boutons_aj), btn_annuler_aj, FALSE, FALSE, 0);
 
-  g_signal_connect ((gpointer) check_escale_aj, "toggled",
-                    G_CALLBACK (on_check_escale_aj_toggled),
-                    NULL);
   g_signal_connect ((gpointer) btn_enregistrer_aj, "clicked",
                     G_CALLBACK (on_btn_enregistrer_aj_clicked),
                     NULL);
@@ -851,7 +821,7 @@ create_fenetre_ajoute_vol (void)
   GLADE_HOOKUP_OBJECT (fenetre_ajoute_vol, entry_destination_aj, "entry_destination_aj");
   GLADE_HOOKUP_OBJECT (fenetre_ajoute_vol, label_date_dep_aj, "label_date_dep_aj");
   GLADE_HOOKUP_OBJECT (fenetre_ajoute_vol, box_date_dep_aj, "box_date_dep_aj");
-  GLADE_HOOKUP_OBJECT (fenetre_ajoute_vol, spin_jour__dep_aj, "spin_jour__dep_aj");
+  GLADE_HOOKUP_OBJECT (fenetre_ajoute_vol, spin_jour_dep_aj, "spin_jour_dep_aj");
   GLADE_HOOKUP_OBJECT (fenetre_ajoute_vol, spin_mois_dep_aj, "spin_mois_dep_aj");
   GLADE_HOOKUP_OBJECT (fenetre_ajoute_vol, spin_annee_dep_aj, "spin_annee_dep_aj");
   GLADE_HOOKUP_OBJECT (fenetre_ajoute_vol, label_heure_dep_aj, "label_heure_dep_aj");
@@ -869,10 +839,6 @@ create_fenetre_ajoute_vol (void)
   GLADE_HOOKUP_OBJECT (fenetre_ajoute_vol, spin_min_arr_aj, "spin_min_arr_aj");
   GLADE_HOOKUP_OBJECT (fenetre_ajoute_vol, label_duree_aj, "label_duree_aj");
   GLADE_HOOKUP_OBJECT (fenetre_ajoute_vol, entry_duree_aj, "entry_duree_aj");
-  GLADE_HOOKUP_OBJECT (fenetre_ajoute_vol, label_escale_aj, "label_escale_aj");
-  GLADE_HOOKUP_OBJECT (fenetre_ajoute_vol, box_escale_aj, "box_escale_aj");
-  GLADE_HOOKUP_OBJECT (fenetre_ajoute_vol, check_escale_aj, "check_escale_aj");
-  GLADE_HOOKUP_OBJECT (fenetre_ajoute_vol, entry_escale_aj, "entry_escale_aj");
   GLADE_HOOKUP_OBJECT (fenetre_ajoute_vol, label_compagnie_aj, "label_compagnie_aj");
   GLADE_HOOKUP_OBJECT (fenetre_ajoute_vol, entry_compagnie_aj, "entry_compagnie_aj");
   GLADE_HOOKUP_OBJECT (fenetre_ajoute_vol, label_aeroport_aj, "label_aeroport_aj");

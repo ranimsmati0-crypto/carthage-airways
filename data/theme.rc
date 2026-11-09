@@ -1,6 +1,5 @@
 style "carthage-dark"
 {
-  engine ""
   bg[NORMAL]        = "#0F1B2D"
   bg[PRELIGHT]      = "#1B2B45"
   bg[ACTIVE]        = "#1B2B45"
