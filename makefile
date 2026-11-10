@@ -7,7 +7,10 @@ vols: $(OBJ)
 	$(CC) $(OBJ) -o vols $(LIBS)
 
 clean:
-	rm -f $(OBJ) vols test_vols
+	rm -f $(OBJ) vols test_vols demo_design
 
 test_vols: src/vols/test_vols.c src/vols/vols.c
 	$(CC) -Wall -g -Isrc/vols src/vols/test_vols.c src/vols/vols.c -o test_vols
+
+demo_design: src/common/demo_design.c src/common/design.c
+	$(CC) $(CFLAGS) -Isrc/common src/common/demo_design.c src/common/design.c -o demo_design $(LIBS)

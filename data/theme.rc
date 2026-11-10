@@ -30,3 +30,25 @@ style "carthage-bleu" = "carthage-dark"
 }
 widget "*btn_rechercher" style "carthage-bleu"
 widget "*btn_ajouter"    style "carthage-bleu"
+
+# ---- Menu lateral commun (design.c) ----
+style "carthage-menu-item"
+{
+    bg[NORMAL]   = "#0F1B2D"
+    bg[PRELIGHT] = "#1B2B45"
+    bg[ACTIVE]   = "#1B2B45"
+    fg[NORMAL]   = "#E6EDF7"
+    fg[PRELIGHT] = "#FFFFFF"
+}
+
+style "carthage-menu-item-actif"
+{
+    bg[NORMAL]   = "#1F3A63"
+    bg[PRELIGHT] = "#1F3A63"
+    bg[ACTIVE]   = "#1F3A63"
+    fg[NORMAL]   = "#FFFFFF"
+    fg[PRELIGHT] = "#FFFFFF"
+}
+
+widget "*carthage_menu*"       style "carthage-menu-item"
+widget "*carthage_menu_actif*" style "carthage-menu-item-actif"
