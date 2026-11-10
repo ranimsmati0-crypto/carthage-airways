@@ -19,7 +19,7 @@ aerorport database
 
 ### passenger
 ```  
-passport number \t nom prenom \t age \t point de fidelite \t state (if its inactive reason in paratheses)
+passport number | nom prenom | age | point de fidelite | state (if its inactive reason in paratheses)
 ```  
 
 history file between account number and vols id and price of each one  
